@@ -1,0 +1,17 @@
+.ingredientsSection {
+  max-width: 600px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 32px;
+}
+
+.wrapper {
+margin-top: 40px;
+max-height: calc(100vh - 100px);
+overflow-y: auto;
+}
