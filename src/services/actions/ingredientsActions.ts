@@ -15,11 +15,28 @@ export const LOAD_INGREDIENTS_SUCCESS: LoadIngredientsSuccessType = 'LOAD_INGRED
 export const LOAD_INGREDIENTS_ERROR: LoadIngredientsErrorType = 'LOAD_INGREDIENTS_ERROR';
 
 
-// Объединяю типы в union-тип, чтобы передать их в редьюсер в объединенном виде
-export type LoadIngredientsActionsTypes = 
-    | LoadIngredientsRequestType
-  | LoadIngredientsSuccessType
-  | LoadIngredientsErrorType;
+// Описание типов экшенов
+export type LoadIngredientsRequestAction = {
+  type: LoadIngredientsRequestType,
+  payload: never
+};
+
+export type LoadIngredientsSuccessAction = {
+  type: LoadIngredientsSuccessType,
+  payload: Array<Ingredient>
+};
+
+export type LoadIngredientsErrorAction = {
+  type: LoadIngredientsErrorType,
+  payload: never
+};
+
+
+// Объединяю экшены в union-тип, чтобы передать их в редьюсер в объединенном виде
+export type LoadIngredientsActions = 
+    | LoadIngredientsRequestAction
+  | LoadIngredientsSuccessAction
+  | LoadIngredientsErrorAction;
 
 
 
@@ -29,6 +46,17 @@ export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DROP_INGREDIENT_BUN = 'DROP_INGREDIENT_BUN';
 export const DROP_INGREDIENT_MIDDLE = 'DROP_INGREDIENT_MIDDLE';
 export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';
+
+
+
+
+
+
+
+
+
+
+
 
 export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 

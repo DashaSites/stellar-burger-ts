@@ -3,7 +3,7 @@ import {
   LOAD_INGREDIENTS_REQUEST,
   LOAD_INGREDIENTS_SUCCESS,
   LOAD_INGREDIENTS_ERROR,
-  LoadIngredientsActionsTypes
+  LoadIngredientsActions
 } from "../actions/ingredientsActions";
 
 
@@ -22,14 +22,9 @@ const ingredientsInitialState: State = {
   isError: false
 };
 
-type Action = {
-  type: LoadIngredientsActionsTypes
-  payload: unknown
-};
-
 
 // Редьюсер для загрузки ингредиентов с сервера
-export const ingredientsReducer = (state = ingredientsInitialState, action: Action): State => {
+export const ingredientsReducer = (state = ingredientsInitialState, action: LoadIngredientsActions): State => {
   switch (action.type) {
     case LOAD_INGREDIENTS_REQUEST: {
       return {
@@ -40,7 +35,7 @@ export const ingredientsReducer = (state = ingredientsInitialState, action: Acti
     case LOAD_INGREDIENTS_SUCCESS: {
       return {
         ...state,
-        ingredients: action.payload as Array<Ingredient>, // Приведение общего типа к конкретному типу. В toolkit можно будет обойтись без этой конструкции "as".
+        ingredients: action.payload,
         isLoading: false,
         isError: false,
       };
