@@ -14,3 +14,7 @@ export type Ingredient = {
   image_large: string,
   __v: number
 };
+
+
+// Расширяю тип первичного ингредиента, чтобы не повторять много информации
+export type ConstructorIngredient = Ingredient & { key: string };

@@ -1,11 +1,11 @@
-import { Ingredient } from "../../models/ingredient-models.js";
+import { Ingredient, ConstructorIngredient } from "../../models/ingredient-models";
 import {
   DELETE_INGREDIENT,
   DROP_INGREDIENT_BUN,
   DROP_INGREDIENT_MIDDLE,
   MOVE_INGREDIENT, 
   ConstructorActions 
-} from "../actions/constructorActions.js";
+} from "../actions/constructorActions";
 import { v4 as uuidv4 } from "uuid";
 
 // Сохраняю в localStorage стейт:
@@ -13,8 +13,8 @@ import { v4 as uuidv4 } from "uuid";
 
 
 type State = {
-  bunIngredientID: null | string,
-  middleIngredients: Array<Ingredient>
+  bunIngredientID: string | null,
+  middleIngredients: Array<ConstructorIngredient>
 };
 
 // initialState for constructorReducer
@@ -68,6 +68,7 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
 
       const stringifiedConstructorState = JSON.stringify(newState);
       localStorage.setItem('constructorState', stringifiedConstructorState);
+      // @ts-ignore
       return newState;
     }
 
@@ -76,7 +77,7 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
         ...state,
         // возвращаю все начинки, кроме выбрасываемой
         middleIngredients: state.middleIngredients.filter(
-          (middleIngredient) => middleIngredient.key !== action.payload
+          (middleIngredient: ConstructorIngredient) => middleIngredient.key !== action.payload.key
         ),
       };
 
@@ -84,9 +85,10 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
       localStorage.setItem('constructorState', stringifiedConstructorState);
       return newState;
     }
-
     case MOVE_INGREDIENT: {
+      // @ts-ignore
       const dragIndex = action.payload.dragIndex;
+      // @ts-ignore
       const hoverIndex = action.payload.hoverIndex;
 
       const middleIngredients = state.middleIngredients;

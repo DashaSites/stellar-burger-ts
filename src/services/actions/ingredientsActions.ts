@@ -63,22 +63,16 @@ export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 
 
 // экшен-криейтор для удаления элемента конструктора
-export function deleteIngredient(_id: string) {
-  return {
-    type: DELETE_INGREDIENT,
-    payload: _id
-  }
-}
+// export function deleteIngredient(_id: string) {
+//   return {
+//     type: DELETE_INGREDIENT,
+//     payload: _id
+//   }
+// }
 
 
 
-// экшен-криейтор для бросания ингредиента (он добавляет ин-ту key с уникальным номером)
-export function dropIngredientWithUuid(droppedIngredient: Ingredient) {
-  return {
-    type: DROP_INGREDIENT_MIDDLE,
-    payload: { ...droppedIngredient, key: uuidv4() }
-  }
-}
+
 
 
 // Запрос к серверу для начальной загрузки ингредиентов

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient } from "../../models/ingredient-models";
+import { Ingredient, ConstructorIngredient } from "../../models/ingredient-models";
 
 
 
@@ -21,7 +21,7 @@ export const MOVE_INGREDIENT: MoveIngredientType = 'MOVE_INGREDIENT';
 // Описание типов экшенов
 export type DeleteIngredientAction = {
   type: DeleteIngredientType,
-  payload: Ingredient
+  payload: ConstructorIngredient
 };
 
 export type DropIngredientBunAction = {
@@ -31,13 +31,15 @@ export type DropIngredientBunAction = {
 
 export type DropIngredientMiddleAction = {
   type: DropIngredientMiddleType,
-  payload: Ingredient
+  payload: ConstructorIngredient
 };
+
 
 export type MoveIngredientAction = {
   type: MoveIngredientType,
   payload: Ingredient
 };
+
 
 
 // Объединяю экшены в union-тип, чтобы передать их в редьюсер в объединенном виде
@@ -46,3 +48,23 @@ export type ConstructorActions =
   | DropIngredientBunAction
   | DropIngredientMiddleAction
   | MoveIngredientAction;
+
+
+
+// экшен-криейтор для бросания ингредиента 
+// (он добавляет объекту ингредиента key с уникальным номером)
+export function dropIngredientWithUuid(droppedIngredient: ConstructorIngredient) {
+  return {
+    type: DROP_INGREDIENT_MIDDLE,
+    payload: { ...droppedIngredient, key: uuidv4() }
+  }
+}
+
+
+export function deleteIngredient(_id: string) {
+  return {
+    type: DELETE_INGREDIENT,
+    payload: _id
+  }
+}
+

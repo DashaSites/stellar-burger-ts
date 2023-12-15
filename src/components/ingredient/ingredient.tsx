@@ -14,7 +14,6 @@ import { Ingredient as IngredientModel } from "../../models/ingredient-models";
 
 
 
-
 type Props = {
   ingredient: IngredientModel;
 };
@@ -31,7 +30,7 @@ const Ingredient = ({ ingredient }: Props) => {
 
   const ingredientId = ingredient['_id'];
  
-
+  // ТИПИЗИРОВАТЬ ХУК useDrag!
   const [{ opacity }, dragRef] = useDrag(
     () => ({
       type: "ingredient",
@@ -46,6 +45,7 @@ const Ingredient = ({ ingredient }: Props) => {
   // Счетчик для соусов и начинок, которые уже выбраны, т.е. находятся в конструкторе
   const middleIngredientsCounter = useMemo(() => {
     const middleIngredientsIDArray = middleIngredients.filter(
+      // @ts-ignore
       (middleIngredient) => middleIngredient.id === ingredient._id
     );
     return middleIngredientsIDArray.length;
@@ -81,7 +81,7 @@ const Ingredient = ({ ingredient }: Props) => {
           alt="ингредиент"
           className={ingredientStyles.image}
         />
-        {ingredient.type === "bun" ? (
+        {ingredient.type === "bun" && bunCounter ? (
           <Counter count={bunCounter} size="default" extraClass="m-1" />
         ) : (
           <Counter
