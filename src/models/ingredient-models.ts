@@ -1,5 +1,4 @@
-// Описания типов 
-
+// Ингредиент, как он приходит с сервера
 export type Ingredient = {
   _id: string,
   name: string,
@@ -15,9 +14,9 @@ export type Ingredient = {
   __v: number
 };
 
-
+// Ингредиент, который попадает в конструктор
 export type ConstructorIngredient = {
   id: string,
   key: string
-}
+};
 

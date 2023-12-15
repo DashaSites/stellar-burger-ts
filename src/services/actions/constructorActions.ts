@@ -21,6 +21,12 @@ type IngredientWithKey = Ingredient & {
   key: string;
 };
 
+
+type MoveIngredientPayload = {
+  dragIndex: number,
+  hoverIndex: number
+};
+
 // Описание типов экшенов
 export type DeleteIngredientAction = {
   type: DeleteIngredientType,
@@ -40,7 +46,7 @@ export type DropIngredientMiddleAction = {
 
 export type MoveIngredientAction = {
   type: MoveIngredientType,
-  payload: Ingredient
+  payload: MoveIngredientPayload
 };
 
 

@@ -6,7 +6,6 @@ import {
   MOVE_INGREDIENT, 
   ConstructorActions 
 } from "../actions/constructorActions";
-import { v4 as uuidv4 } from "uuid";
 
 // Сохраняю в localStorage стейт:
 //!!! НОВОЕ const prevStateString = localStorage.getItem('constructorState');
@@ -24,13 +23,6 @@ const initialState: State = {
   middleIngredients: []
 };
 
-/* !!! НОВОЕ
-const initialState = prevStateString ? JSON.parse(prevStateString) : {
-  bunIngredientID: null,
-  // массив ингредиентов, который содержит айдишники и уникальные ключи каждого инг-та
-  middleIngredients: [],
-};
-*/
 
 // Редьюсер для получения списка ингредиентов в конструкторе бургера
 export const constructorReducer = (state = initialState, action: ConstructorActions): State => {
@@ -43,10 +35,6 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
         // перетаскиваемые булки заменяют собой булки, которые были в конструкторе раньше
         bunIngredientID: droppedIngredientBun._id,
       };
-
-      // !!! НОВОЕ const stringifiedConstructorState = JSON.stringify(newState);
-
-      // !!! НОВОЕ localStorage.setItem('constructorState', stringifiedConstructorState);
 
       return newState;
     }
@@ -86,9 +74,9 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
       return newState;
     }
     case MOVE_INGREDIENT: {
-      // @ts-ignore
+     
       const dragIndex = action.payload.dragIndex;
-      // @ts-ignore
+      
       const hoverIndex = action.payload.hoverIndex;
 
       const middleIngredients = state.middleIngredients;

@@ -4,8 +4,6 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from "./ingredient.module.css";
-//import PropTypes from "prop-types";
-//import ingredientPropType from "../../utils/prop-types.js";
 import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import { useLocation, Link } from 'react-router-dom';
@@ -27,7 +25,6 @@ const Ingredient = ({ ingredient }: Props) => {
 
   const location = useLocation();
 
-
   const ingredientId = ingredient['_id'];
  
   // ТИПИЗИРОВАТЬ ХУК useDrag!
@@ -45,7 +42,6 @@ const Ingredient = ({ ingredient }: Props) => {
   // Счетчик для соусов и начинок, которые уже выбраны, т.е. находятся в конструкторе
   const middleIngredientsCounter = useMemo(() => {
     const middleIngredientsIDArray = middleIngredients.filter(
-      // @ts-ignore
       (middleIngredient) => middleIngredient.id === ingredient._id
     );
     return middleIngredientsIDArray.length;
@@ -103,10 +99,5 @@ const Ingredient = ({ ingredient }: Props) => {
   );
 };
 
-// УБРАТЬ ЭТУ ПРОВЕРКУ. ВМЕСТО НЕЕ СДЕЛАТЬ ТИПИЗАЦИЮ
-
-//Ingredient.propTypes = {
-//  ingredient: ingredientPropType.isRequired
-//};
 
 export default Ingredient;

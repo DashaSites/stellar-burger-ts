@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.65",
+    "@types/react-router": "^5.1.20",
+    "@types/react-router-dom": "^5.3.3",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
