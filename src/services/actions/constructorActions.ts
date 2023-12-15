@@ -17,11 +17,14 @@ export const DROP_INGREDIENT_MIDDLE: DropIngredientMiddleType = 'DROP_INGREDIENT
 export const MOVE_INGREDIENT: MoveIngredientType = 'MOVE_INGREDIENT';
 
 
+type IngredientWithKey = Ingredient & {
+  key: string;
+};
 
 // Описание типов экшенов
 export type DeleteIngredientAction = {
   type: DeleteIngredientType,
-  payload: ConstructorIngredient
+  payload: IngredientWithKey
 };
 
 export type DropIngredientBunAction = {
@@ -31,7 +34,7 @@ export type DropIngredientBunAction = {
 
 export type DropIngredientMiddleAction = {
   type: DropIngredientMiddleType,
-  payload: ConstructorIngredient
+  payload: IngredientWithKey
 };
 
 

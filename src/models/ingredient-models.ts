@@ -16,5 +16,8 @@ export type Ingredient = {
 };
 
 
-// Расширяю тип первичного ингредиента, чтобы не повторять много информации
-export type ConstructorIngredient = Ingredient & { key: string };
+export type ConstructorIngredient = {
+  id: string,
+  key: string
+}
+

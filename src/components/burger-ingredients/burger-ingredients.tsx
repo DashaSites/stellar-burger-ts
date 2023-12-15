@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-// import Ingredient from "../ingredient/ingredient.jsx";
+import Ingredient from "../ingredient/ingredient";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../services/store/store";
 
@@ -109,38 +109,38 @@ const BurgerIngredients = () => {
           Булки
         </h2>
         {/* раздел с булками */}
-        {/* <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
+        <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
           {buns.map((bun) => (
             <Ingredient
               ingredient={bun}
               key={bun._id}
             />
           ))}
-        </ul> */}
+        </ul>
         <h2 className="text text_type_main-medium" id="sauce" ref={saucesRef}>
           Соусы
         </h2>
         {/* раздел с соусами */}
-        {/* <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
+        <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
           {sauces.map((sauce) => (
             <Ingredient
               ingredient={sauce}
               key={sauce._id}
             />
           ))}
-        </ul> */}
+        </ul>
         <h2 className="text text_type_main-medium" id="main" ref={mainsRef}>
           Начинки
         </h2>
         {/* раздел с начинками */}
-        {/* <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
+        <ul className={`${ingredientsStyles.list} mt-8 mr-8 mb-10 ml-4`}>
           {mains.map((main) => (
             <Ingredient
               ingredient={main}
               key={main._id}
             />
           ))}
-        </ul> */}
+        </ul>
       </div>
 
 {/* Модалка ингредиента теперь открывается не из этого компонента, 

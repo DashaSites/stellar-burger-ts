@@ -9,10 +9,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
+// "!" говорит тайпскрипту о том, что тип выражения, которое стоит до него, не может быть null
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+// К такому же приему можно прибегнуть в модалке, где я достаю элемент,
+// который является корнем для портала. Там тоже можно подавить замечание через "!"
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <Provider store={store}> 

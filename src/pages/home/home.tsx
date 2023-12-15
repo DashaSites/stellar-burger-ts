@@ -18,8 +18,7 @@ export const HomePage = () => {
   return (
     <div className={styles.home}>
       <main className={styles.main}>
-        <p>HOME PAGE</p>
-          <BurgerIngredients />
+        <BurgerIngredients />
         {/* <BurgerConstructor /> */}
       </main>
     </div>

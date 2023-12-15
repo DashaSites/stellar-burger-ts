@@ -68,7 +68,7 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
 
       const stringifiedConstructorState = JSON.stringify(newState);
       localStorage.setItem('constructorState', stringifiedConstructorState);
-      // @ts-ignore
+      
       return newState;
     }
 
