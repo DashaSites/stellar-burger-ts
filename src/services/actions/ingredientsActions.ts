@@ -42,6 +42,9 @@ export type LoadIngredientsActions =
 
 
 
+
+// Эти экшены пока не типизированы
+
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const DROP_INGREDIENT_BUN = 'DROP_INGREDIENT_BUN';
 export const DROP_INGREDIENT_MIDDLE = 'DROP_INGREDIENT_MIDDLE';

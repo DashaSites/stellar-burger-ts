@@ -8,7 +8,7 @@ import { RootState } from "../../services/store/store";
 
 
 
-const BurgerIngredients = () => {
+const BurgerIngredients = (): React.JSX.Element => {
   const { ingredients } = useSelector((state: RootState) => state.ingredientsState);
   const dispatch = useDispatch();
 

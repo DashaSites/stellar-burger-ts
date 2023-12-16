@@ -4,7 +4,7 @@ import preloaderStyles from "./preloader.module.css";
 import preloader from "../../images/spinner.svg";
 
 
-const Preloader = () => {
+const Preloader = (): React.JSX.Element => {
   return (
     <div className={preloaderStyles.container}>
       <img src={preloader} className={preloaderStyles.spinner} />

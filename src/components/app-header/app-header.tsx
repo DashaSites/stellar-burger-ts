@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate, NavLink, useMatch, useLocation } from "react-router-dom";
 
-const AppHeader = () => {
+const AppHeader = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const location = useLocation();

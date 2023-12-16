@@ -1,0 +1,44 @@
+.constructorSection {
+  max-width: 600px;
+}
+
+.elementsList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fixedElement {
+  margin-right: 15px;
+}
+
+.transposableElements {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.transposableElement {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.transposableElement:last-of-type {
+  margin-bottom: 16px;
+}
+
+.resultCorner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 52px;
+}
+
+.resultCounter {
+  display: flex;
+  align-items: center;
+  column-gap: 9px;
+}

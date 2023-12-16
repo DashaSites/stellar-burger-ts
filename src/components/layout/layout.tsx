@@ -5,7 +5,7 @@ import styles from "./layout.module.css";
 import { useDispatch } from "react-redux";
 
 
-const Layout = () => {
+const Layout = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

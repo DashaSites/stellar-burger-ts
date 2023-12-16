@@ -17,7 +17,7 @@ type Props = {
 };
 
 
-const Ingredient = ({ ingredient }: Props) => {
+const Ingredient = ({ ingredient }: Props): React.JSX.Element => {
   // Вытаскиваю в стейт из стора айдишники тех булок и ингредиентов, которые сейчас лежат в конструкторе
   const { bunIngredientID, middleIngredients } = useSelector(
     (state: RootState) => state.constructorState
@@ -27,7 +27,6 @@ const Ingredient = ({ ingredient }: Props) => {
 
   const ingredientId = ingredient['_id'];
  
-  // ТИПИЗИРОВАТЬ ХУК useDrag!
   const [{ opacity }, dragRef] = useDrag(
     () => ({
       type: "ingredient",

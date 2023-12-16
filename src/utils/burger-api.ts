@@ -24,3 +24,24 @@ export const getIngredients = () => {
       }
     })
 };
+
+
+
+
+
+///// ЗАПРОСЫ, СВЯЗАННЫЕ С РОУТИНГОМ /////
+
+// Запрос для авторизации пользователя
+// Это неавторизованный запрос (без передачи на сервер токена)
+export const loginUser = (email: string, password: string) => {
+  return request(`${API_URL}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({
+      "email": email, 
+      "password": password
+   })
+  })
+};

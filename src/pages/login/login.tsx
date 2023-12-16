@@ -6,31 +6,63 @@ import {
   Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Navigate, useNavigate } from "react-router-dom";
-//import { useDispatch } from "react-redux";
-
-// ДОБАВИТЬ ФУКНКЦИОНАЛЬНОСТЬ КНОПОК В РЕНДЕРЕ
-// ДОБАВИТЬ ВСЮ ФУНКЦИОНАЛЬНОСТЬ НАД РЕНДЕРОМ
+import { useDispatch } from "react-redux";
+import { getFetchedAuthorizedUser } from "../../services/actions/authorizationActions.js";
 
 
 // Страница авторизации
-export const LoginPage = () => { 
+export const LoginPage = (): React.JSX.Element => { 
+
+  // Пользователь вводит свои данные в форму
+  // Сделать запрос (dispatch + action)
+  // Запрос идет на сервер 
+  // После этого данные пользователя (res) вместе с двумя токенами записываем в хранилище
+  // (Оба токена записать в localStorage)
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
 
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailValue(e.target.value);
+  }
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordValue(e.target.value);
+  }
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    dispatch(getFetchedAuthorizedUser(emailValue, passwordValue));
+
+    setEmailValue("");
+    setPasswordValue("");
+  }
+
+  const registerButtonClickHandler = () => {
+    navigate("/register");
+  }
+
+  const restorePasswordButtonHandler =() => {
+    navigate("/forgot-password");
+  }
 
 
   return (
     <div className={loginStyles.formContainer}>
-      <form className={loginStyles.form}>
+      <form className={loginStyles.form} onSubmit={handleFormSubmit}>
 
         <h2 className={`${loginStyles.headline} text text_type_main-medium mb-6`}>Вход</h2>
         <fieldset className={loginStyles.inputItems}>
          <EmailInput 
-           value="will add later"
-           onChange={() => {console.log("will add later")}}
+            onChange={onEmailChange}
+            value={emailValue}
          />
          <PasswordInput 
-           value="will add later"
-           onChange={() => {console.log("will add later")}}
+          onChange={onPasswordChange}
+          value={passwordValue}
          />
         </fieldset>
 
@@ -45,7 +77,7 @@ export const LoginPage = () => {
           Вы — новый пользователь?
         </p>
 
-        <button className={`${loginStyles.navigationButton} text text_type_main-default`} >
+        <button className={`${loginStyles.navigationButton} text text_type_main-default`} onClick={registerButtonClickHandler}>
           Зарегистрироваться
         </button>
 
@@ -57,7 +89,7 @@ export const LoginPage = () => {
           Забыли пароль?
         </p>
 
-        <button className={`${loginStyles.navigationButton} text text_type_main-default`} >
+        <button className={`${loginStyles.navigationButton} text text_type_main-default`} onClick={restorePasswordButtonHandler}>
           Восстановить пароль
         </button>
 
