@@ -45,3 +45,53 @@ export const loginUser = (email: string, password: string) => {
    })
   })
 };
+
+
+// Запрос для регистрации
+// Это неавторизованный запрос (без передачи на сервер токена)
+export const registerUser = (name: string, email: string, password: string) => {
+  return request(`${API_URL}/auth/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({
+      "email": email, 
+      "password": password, 
+      "name": name 
+    })
+  })
+}
+
+
+// Запрос для опознания пользователя, забывшего пароль, по его мейлу
+// Это неавторизованный запрос (без передачи на сервер токена)
+export const recognizeUser = (email: string) => {
+  return request(`${API_URL}/password-reset`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({
+      "email": email
+    })
+  })
+}
+
+
+// Запрос для reset password
+// Это неавторизованный запрос (без передачи на сервер токена)?
+export const resetPassword = (password: string, token: string) => {
+  return request(`${API_URL}/password-reset/reset`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({
+      "password": password,
+      "token": token
+    })
+  })
+}
+
+

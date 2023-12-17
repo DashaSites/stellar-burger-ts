@@ -1,4 +1,3 @@
-import { UserData } from "../../models/user-data-models";
 import {
   AUTHORIZE_USER_REQUEST,
   AUTHORIZE_USER_SUCCESS,
@@ -8,7 +7,7 @@ import {
 } from "../actions/authorizationActions";
 
 
-type State = {
+export type AuthorizationState = {
   isRegistered: boolean,
   isAuthorized: boolean,
   userName: string | null,
@@ -18,7 +17,7 @@ type State = {
 };
 
 // initialState for authorizationReducer
-export const initialState: State = {
+export const initialState: AuthorizationState = {
   isRegistered: false,
   isAuthorized: false,
   userName: null,
@@ -28,7 +27,7 @@ export const initialState: State = {
 };
 
 // Авторизация в окне login
-export const authorizationReducer = (state = initialState, action: UserAuthorizationActions): State => {
+export const authorizationReducer = (state = initialState, action: UserAuthorizationActions): AuthorizationState => {
   switch (action.type) {
     case SET_AUTH_CHECKED: { 
       return {

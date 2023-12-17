@@ -8,33 +8,62 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-//import { getFetchedRegisteredUser } from "../../services/actions/registrationActions.js";
-
+import { getFetchedRegisteredUser } from "../../services/actions/registrationActions";
 
 export const RegisterPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [nameValue, setNameValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
+  const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameValue(e.target.value);
+  }
+
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setEmailValue(e.target.value);
+  }
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPasswordValue(e.target.value);
+  }
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    //@ts-ignore
+    dispatch(getFetchedRegisteredUser(nameValue, emailValue, passwordValue));
+
+    setNameValue("");
+    setEmailValue("");
+    setPasswordValue("");
+  }
+
+  const loginButtonClickHandler = () => {
+    navigate("/login");
+  }
 
 
   return (
     <div className={styles.formContainer}>
-      <form className={styles.form} > 
+      <form className={styles.form} onSubmit={handleFormSubmit}> 
         <h2 className={`${styles.headline} text text_type_main-medium mb-6`}>Регистрация</h2>   
         <fieldset className={styles.inputItems}>
          <Input 
             placeholder="Имя"
-            value="will add later"
-            onChange={() => {console.log("will add later")}}
+            onChange={onNameChange}
+            value={nameValue}
          />
          <EmailInput 
-           value="will add later"
-           onChange={() => {console.log("will add later")}}
+            onChange={onEmailChange}
+            value={emailValue}  
          />
          <PasswordInput       
-           value="will add later"
-           onChange={() => {console.log("will add later")}}
+            onChange={onPasswordChange}
+            value={passwordValue}
          />
         </fieldset>
         <div className={`${styles.loginButton} mt-6 mb-20`}>
@@ -46,7 +75,7 @@ export const RegisterPage = () => {
         <p className={`${styles.navigationText} text text_type_main-default`}>
           Уже зарегистрированы?
         </p>
-        <button className={`${styles.navigationButton} text text_type_main-default`} >
+        <button className={`${styles.navigationButton} text text_type_main-default`} onClick={loginButtonClickHandler}>
           Войти
         </button>
       </div>

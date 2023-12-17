@@ -1,5 +1,6 @@
 import { loginUser } from "../../utils/burger-api";
-import { UserData } from "../../models/user-data-models";
+import { AppDispatch } from "../store/store";
+
 
 
 // Типы для экшенов логина
@@ -16,8 +17,7 @@ export const AUTHORIZE_USER_ERROR: AuthorizeUserErrorType = 'AUTHORIZE_USER_ERRO
 
 // Описания типов экшенов логина для authorizationReducer
 export type AuthorizeUserRequestAction = {
-  type: AuthorizeUserRequestType,
-  payload: never
+  type: AuthorizeUserRequestType
 };
 
 export type AuthorizeUserSuccessAction = {
@@ -31,8 +31,7 @@ export type AuthorizeUserSuccessAction = {
 };
 
 export type AuthorizeUserErrorAction = {
-  type: AuthorizeUserErrorType,
-  payload: never
+  type: AuthorizeUserErrorType
 };
 
 
@@ -47,13 +46,13 @@ export const SET_AUTH_CHECKED: SetAuthCheckedType = "SET_AUTH_CHECKED";
 // Описание типа экшена для этой проверки
 export type SetAuthCheckedAction = {
   type: SetAuthCheckedType,
-  payload: never
+  payload: boolean
 };
 
 
 
 
-// Объединяю экшены в union-тип, чтобы передать их в редьюсер
+// Объединяю все экшены в union-тип для передачи в редьюсер
 export type UserAuthorizationActions = 
     | AuthorizeUserRequestAction
   | AuthorizeUserSuccessAction
@@ -76,7 +75,7 @@ export const setAuthChecked = (value: boolean) => ({
 
 // Асинхронный запрос для логина (функция с мидлваром)
 export const getFetchedAuthorizedUser = (email: string, password: string) => { 
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     // флажок о начале загрузки
     dispatch({
         type: AUTHORIZE_USER_REQUEST

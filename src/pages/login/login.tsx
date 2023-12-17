@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getFetchedAuthorizedUser } from "../../services/actions/authorizationActions.js";
+import { getFetchedAuthorizedUser } from "../../services/actions/authorizationActions";
 
 
 // Страница авторизации
@@ -35,6 +35,7 @@ export const LoginPage = (): React.JSX.Element => {
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    //@ts-ignore
     dispatch(getFetchedAuthorizedUser(emailValue, passwordValue));
 
     setEmailValue("");
