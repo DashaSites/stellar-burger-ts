@@ -21,6 +21,8 @@ export const LoginPage = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // Если в стейте лежит простое значение типа строки, то его можно здесь не указывать.
+  // А если внутри useState хранится какой-то объект, то лучше описать его тип.
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
