@@ -16,6 +16,14 @@ type Props = {
   ingredient: IngredientModel;
 };
 
+type DragObject = {
+  id: string
+};
+
+type DragCollectedProps = {
+  opacity: number
+};
+
 
 const Ingredient = ({ ingredient }: Props): React.JSX.Element => {
   // Вытаскиваю в стейт из стора айдишники тех булок и ингредиентов, которые сейчас лежат в конструкторе
@@ -27,7 +35,7 @@ const Ingredient = ({ ingredient }: Props): React.JSX.Element => {
 
   const ingredientId = ingredient['_id'];
  
-  const [{ opacity }, dragRef] = useDrag(
+  const [{ opacity }, dragRef] = useDrag<DragObject, unknown, DragCollectedProps>(
     () => ({
       type: "ingredient",
       item: { id: ingredient._id },
