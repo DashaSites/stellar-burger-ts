@@ -16,17 +16,17 @@ import {
   MOVE_INGREDIENT,
 } from "../../services/actions/constructorActions";
 import { getFetchedOrderDetailsFromApi } from "../../services/actions/orderDetailsActions";
-import { RootState, select } from "../../services/store/store.js";
-import { ingredientSelector } from "../../services/selector/ingredientsSelectors.js";
+import { RootState, select } from "../../services/store/store";
+import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
-import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element.jsx";
+import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";
 import Modal from "../modal/modal.jsx";
 import OrderDetails from "../order-receipt/order-receipt.jsx";
 import Preloader from "../preloader/preloader.jsx";
 import { Navigate, useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
 
-const BurgerConstructor = () => {
+const BurgerConstructor = (): React.JSX.Element => {
   const { ingredients } = useSelector((state: RootState) => state.ingredientsState);
   const { isError } = useSelector((state: RootState) => state.orderDetailsState);
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const BurgerConstructor = () => {
 
   }, [bunElement, mainsAndSaucesElementsCount])
 
-  
+
   // Текущая стоимость заказа на данный момент
   const totalOrderPrice = useMemo(() => {
 

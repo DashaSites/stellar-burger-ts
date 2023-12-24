@@ -21,7 +21,6 @@ export function middleIngredientsSelector(state: RootState) {
       return;
     }
 
-
     const ingredientWithKey = {
       ...ingredient,
       key: middleIngredientKeyAndId.key,

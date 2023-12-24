@@ -25,6 +25,10 @@ export type ConstructorIngredient = {
   key: string
 };
 
+export type ConstructorIngredientWithKey = Ingredient & {
+  key: string
+};
+
 
 // Данные о пользователе, как они приходят с сервера
 export type UserData = {
