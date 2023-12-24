@@ -21,7 +21,7 @@ import { ingredientSelector } from "../../services/selector/ingredientsSelectors
 import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";
 import Modal from "../modal/modal";
-import OrderDetails from "../order-receipt/order-receipt.jsx";
+import OrderDetails from "../order-receipt/order-receipt";
 import Preloader from "../preloader/preloader.jsx";
 import { Navigate, useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
