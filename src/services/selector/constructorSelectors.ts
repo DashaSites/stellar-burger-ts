@@ -1,3 +1,4 @@
+import { Ingredient } from "../../utils/burger-api-types.js";
 import { RootState } from "../store/store.js";
 import { ingredientSelector } from "./ingredientsSelectors.js";
 
@@ -9,12 +10,27 @@ export function bunSelector(state: RootState) {
 
 // Элемент начинки, найденный через редьюсер для конструктора бургера
 export function middleIngredientsSelector(state: RootState) {
-  const middleIngredients = state.constructorState.middleIngredients;
-  return middleIngredients.map((middleIngredient) => {
-    const ingredient = ingredientSelector(middleIngredient.id)(state);
-    return {
+  const middleIngredientsKeysAndIds = state.constructorState.middleIngredients;
+
+  const middleIngredients: Ingredient[] = [];
+
+  middleIngredientsKeysAndIds.forEach((middleIngredientKeyAndId) => {
+    const ingredient = ingredientSelector(middleIngredientKeyAndId.id)(state);
+
+    if (!ingredient) {
+      return;
+    }
+
+
+    const ingredientWithKey = {
       ...ingredient,
-      key: middleIngredient.key,
+      key: middleIngredientKeyAndId.key,
     };
+
+    middleIngredients.push(ingredientWithKey);
+
+
   });
+
+  return middleIngredients;
 }

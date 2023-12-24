@@ -19,12 +19,19 @@ export function orderPriceSelector(ingredientsIds: string[]) {
   return function (state: RootState) {
     const allIngredients = state.ingredientsState.ingredients;
 
-    const selectedIngredients = ingredientsIds.map((id) => {
-      return allIngredients.find((ingredient) => ingredient._id === id)
+    const selectedIngredients: Ingredient[] = [];
+
+    ingredientsIds.forEach((id) => {
+
+    
+      const findResult = allIngredients.find((ingredient) => ingredient._id === id)
+
+      if (!findResult) {
+        return;
+      }
+
+      selectedIngredients.push(findResult)
     })
-
-    const selectedIngredientsDefined = selectedIngredients.filter(item => !!item) as Ingredient[];
-
 
 
     const getOrderPrice = (ingredientsInOrder: Ingredient[]) => {
@@ -37,6 +44,6 @@ export function orderPriceSelector(ingredientsIds: string[]) {
       return orderPrice;
     }
 
-    return getOrderPrice(selectedIngredientsDefined);
+    return getOrderPrice(selectedIngredients);
   };
 }

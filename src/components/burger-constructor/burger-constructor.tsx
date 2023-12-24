@@ -58,6 +58,7 @@ const BurgerConstructor = () => {
 
   }, [bunElement, mainsAndSaucesElementsCount])
 
+  
   // Текущая стоимость заказа на данный момент
   const totalOrderPrice = useMemo(() => {
 

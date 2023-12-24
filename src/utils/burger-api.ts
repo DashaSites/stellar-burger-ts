@@ -41,7 +41,7 @@ export const getOrderDetails = (idArray: string[]): Promise<OrderNumber> => {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
-      authorization: localStorage.getItem('accessToken')  || ""
+      authorization: localStorage.getItem('accessToken') || ""
     },
     body: JSON.stringify({
       "ingredients": idArray
