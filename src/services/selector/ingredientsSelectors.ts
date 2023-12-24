@@ -1,3 +1,4 @@
+import { Ingredient } from "../../utils/burger-api-types";
 import { RootState } from "../store/store";
 
 // Элемент ингредиента, найденный по id через constructorReducer
@@ -21,10 +22,14 @@ export function orderPriceSelector(ingredientsIds: string[]) {
     const selectedIngredients = ingredientsIds.map((id) => {
       return allIngredients.find((ingredient) => ingredient._id === id)
     })
-    // @ts-ignore
-    const getOrderPrice = (ingredientsInOrder) => {
+
+    const selectedIngredientsDefined = selectedIngredients.filter(item => !!item) as Ingredient[];
+
+
+
+    const getOrderPrice = (ingredientsInOrder: Ingredient[]) => {
       let orderPrice = 0;
-    // @ts-ignore
+   
       ingredientsInOrder.forEach((ingredient) => {
         orderPrice += ingredient.price; 
       });
@@ -32,6 +37,6 @@ export function orderPriceSelector(ingredientsIds: string[]) {
       return orderPrice;
     }
 
-    return getOrderPrice(selectedIngredients);
+    return getOrderPrice(selectedIngredientsDefined);
   };
 }

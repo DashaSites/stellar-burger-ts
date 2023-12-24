@@ -1,4 +1,4 @@
-import { Ingredient } from "../../models/ingredient-models.js";
+import { Ingredient } from "../../utils/burger-api-types";
 import {
   LOAD_INGREDIENTS_REQUEST,
   LOAD_INGREDIENTS_SUCCESS,

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import { useLocation, Link } from 'react-router-dom';
 import { RootState } from "../../services/store/store";
-import { Ingredient as IngredientModel } from "../../models/ingredient-models";
+import { Ingredient as IngredientModel } from "../../utils/burger-api-types";
 
 
 

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient } from "../../models/ingredient-models";
+import { Ingredient } from "../../utils/burger-api-types";
 
 
 // Типы экшенов 
@@ -41,29 +41,10 @@ export type LoadIngredientsActions =
 
 
 
-
-
-// Эти экшены пока не типизированы
-
-export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
-export const DROP_INGREDIENT_BUN = 'DROP_INGREDIENT_BUN';
-export const DROP_INGREDIENT_MIDDLE = 'DROP_INGREDIENT_MIDDLE';
-export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';
-
-
-
-
-
-
-
-
-
-
-
-
 export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 
 
+///// ЭТИ ФУНКЦИИ ПЕРЕНЕСЕНЫ В constructorActions.ts
 
 // экшен-криейтор для удаления элемента конструктора
 // export function deleteIngredient(_id: string) {
@@ -74,6 +55,15 @@ export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 // }
 
 
+// // экшен-криейтор для бросания ингредиента (он добавляет ин-ту key с уникальным номером)
+// export function dropIngredientWithUuid(droppedIngredient) {
+//   return {
+//     type: DROP_INGREDIENT_MIDDLE,
+//     payload: { ...droppedIngredient, key: uuidv4() }
+//   }
+// }
+
+/////
 
 
 // ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ

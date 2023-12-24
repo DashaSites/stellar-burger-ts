@@ -1,4 +1,4 @@
-import { Ingredient, ConstructorIngredient } from "../../models/ingredient-models";
+import { Ingredient, ConstructorIngredient } from "../../utils/burger-api-types";
 import {
   DELETE_INGREDIENT,
   DROP_INGREDIENT_BUN,

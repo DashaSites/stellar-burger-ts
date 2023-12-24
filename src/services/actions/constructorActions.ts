@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient, ConstructorIngredient } from "../../models/ingredient-models";
+import { Ingredient, ConstructorIngredient } from "../../utils/burger-api-types";
 
 
 

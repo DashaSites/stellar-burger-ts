@@ -14,11 +14,11 @@ import { useDrop } from "react-dnd";
 import {
   DROP_INGREDIENT_BUN,
   MOVE_INGREDIENT,
-} from "../../services/actions/ingredientsActions";
+} from "../../services/actions/constructorActions";
 import { getFetchedOrderDetailsFromApi } from "../../services/actions/orderDetailsActions";
-import { select } from "../../services/store/store.js";
+import { RootState, select } from "../../services/store/store.js";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors.js";
-import { dropIngredientWithUuid } from "../../services/actions/ingredientsActions.js";
+import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element.jsx";
 import Modal from "../modal/modal.jsx";
 import OrderDetails from "../order-receipt/order-receipt.jsx";
@@ -27,8 +27,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
 
 const BurgerConstructor = () => {
-  const { ingredients } = useSelector((state) => state.ingredientsState);
-  const { isError } = useSelector((state) => state.orderDetailsState);
+  const { ingredients } = useSelector((state: RootState) => state.ingredientsState);
+  const { isError } = useSelector((state: RootState) => state.orderDetailsState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const BurgerConstructor = () => {
   // Из данных вытащим массив всех остальных ингредиентов, кроме булок: передаем его сюда из селектора
   const mainsAndSaucesElements = useSelector(middleIngredientsSelector);
 
-  const { isLoading } = useSelector((state) => state.orderDetailsState);
+  const { isLoading } = useSelector((state: RootState) => state.orderDetailsState);
 
   // Суммарное число ингредиентов-соусов и ингредиентов-начинок в конструкторе
   const mainsAndSaucesElementsCount = mainsAndSaucesElements.length;

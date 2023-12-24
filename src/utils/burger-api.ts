@@ -1,5 +1,4 @@
-import { Ingredient } from "../models/ingredient-models";
-import { Message, UserData } from "./burger-api-types";
+import { Ingredient, Message, OrderData, OrderNumber, UserData } from "./burger-api-types";
 
 
 const API_URL = 'https://norma.nomoreparties.space/api';
@@ -27,7 +26,6 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 
 
 
-
 export const getIngredients = (): Promise<Ingredient[]> => {
   return fetch(`${API_URL}/ingredients`, {
       headers: {
@@ -35,6 +33,31 @@ export const getIngredients = (): Promise<Ingredient[]> => {
       }
     })
     .then(checkResponse<Ingredient[]>)
+};
+
+
+export const getOrderDetails = (idArray: string[]): Promise<OrderNumber> => {
+  return fetch(`${API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      authorization: localStorage.getItem('accessToken')  || ""
+    },
+    body: JSON.stringify({
+      "ingredients": idArray
+    })
+  })
+  .then(checkResponse<OrderNumber>)
+};
+
+
+export const getOrderByNumber = (number: number): Promise<OrderData> => {
+  return fetch(`${API_URL}/orders/${number}`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(checkResponse<OrderData>)
 };
 
 
