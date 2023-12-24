@@ -20,7 +20,7 @@ import { RootState, select } from "../../services/store/store";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";
-import Modal from "../modal/modal.jsx";
+import Modal from "../modal/modal";
 import OrderDetails from "../order-receipt/order-receipt.jsx";
 import Preloader from "../preloader/preloader.jsx";
 import { Navigate, useNavigate } from "react-router-dom";

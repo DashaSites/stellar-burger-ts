@@ -3,7 +3,7 @@ import modalOverlayStyles from "./modal-overlay.module.css";
 
 
 type Props = {
-  onClick: () => boolean
+  onClick: () => void
 };
 
 const ModalOverlay = ({ onClick }: Props): React.JSX.Element => {

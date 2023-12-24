@@ -6,7 +6,7 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 
 
 type Props = {
-  closeModals: () => boolean;
+  closeModals: () => void;
   children: React.ReactNode
 };
 
