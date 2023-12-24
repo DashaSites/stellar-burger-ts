@@ -76,7 +76,7 @@ export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 
 
 
-
+// ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
 
 // Запрос к серверу для начальной загрузки ингредиентов
 export function getFetchedIngredientsFromApi() { // функция с мидлваром

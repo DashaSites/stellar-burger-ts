@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   bunSelector,
   middleIngredientsSelector
-} from "../../services/selector/constructorSelectors.js";
+} from "../../services/selector/constructorSelectors";
 import { useDrop } from "react-dnd";
 import {
   DROP_INGREDIENT_BUN,
@@ -24,7 +24,7 @@ import Modal from "../modal/modal.jsx";
 import OrderDetails from "../order-receipt/order-receipt.jsx";
 import Preloader from "../preloader/preloader.jsx";
 import { Navigate, useNavigate } from "react-router-dom";
-import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors.js";
+import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
 
 const BurgerConstructor = () => {
   const { ingredients } = useSelector((state) => state.ingredientsState);
