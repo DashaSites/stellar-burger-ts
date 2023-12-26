@@ -1,4 +1,4 @@
-import { Ingredient } from "../../utils/burger-api-types.js";
+import { ConstructorIngredientWithKey, Ingredient } from "../../utils/burger-api-types.js";
 import { RootState } from "../store/store.js";
 import { ingredientSelector } from "./ingredientsSelectors.js";
 
@@ -12,7 +12,7 @@ export function bunSelector(state: RootState) {
 export function middleIngredientsSelector(state: RootState) {
   const middleIngredientsKeysAndIds = state.constructorState.middleIngredients;
 
-  const middleIngredients: Ingredient[] = [];
+  const middleIngredients: ConstructorIngredientWithKey[] = [];
 
   middleIngredientsKeysAndIds.forEach((middleIngredientKeyAndId) => {
     const ingredient = ingredientSelector(middleIngredientKeyAndId.id)(state);

@@ -16,7 +16,7 @@ import Preloader from "../preloader/preloader";
 
 
 
-function App() {
+function App(): React.JSX.Element {
 
   const location = useLocation();
   const background = location.state && location.state.background;

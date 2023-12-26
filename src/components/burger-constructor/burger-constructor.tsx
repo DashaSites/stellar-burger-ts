@@ -124,7 +124,7 @@ const BurgerConstructor = (): React.JSX.Element => {
   /////
 
   // Отправляю в редьюсер специальный экшен, чтобы сортировать ингредиенты (он взят из библиотеки dnd)
-  const moveIngredient = useCallback((dragIndex, hoverIndex) => {
+  const moveIngredient = useCallback((dragIndex: number, hoverIndex: number) => {
     dispatch({
       type: MOVE_INGREDIENT,
       payload: {
