@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getFetchedRegisteredUser } from "../../services/actions/registrationActions";
 
-export const RegisterPage = () => {
+export const RegisterPage = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

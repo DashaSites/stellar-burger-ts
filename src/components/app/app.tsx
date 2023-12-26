@@ -13,6 +13,7 @@ import Layout from "../layout/layout";
 
 import { PageNotFound } from "../../pages/page-not-found/not-found";
 import Preloader from "../preloader/preloader";
+import { OnlyUnAuth } from '../protected-route-element/protected-route-element';
 
 
 
@@ -30,9 +31,10 @@ function App(): React.JSX.Element {
               <Route path="/" element={<HomePage />} />
 
               {/* Только для неавторизованных */}
-              <Route path="login" element={<LoginPage/>} />
+              <Route path="login" element={<OnlyUnAuth component={<LoginPage/>} />} />
               {/* Только для неавторизованных */}
-              <Route path="register" element={<RegisterPage/>} />
+              <Route path="register" element={<OnlyUnAuth component={<RegisterPage/>} />} />
+
               {/* Только для неавторизованных */}
               <Route path="forgot-password" element={<ForgotPasswordPage />} />
               {/* Только для неавторизованных */}
