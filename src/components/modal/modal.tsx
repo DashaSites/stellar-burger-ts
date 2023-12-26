@@ -13,7 +13,7 @@ type Props = {
 const modalsContainer = document.querySelector("#modals");
 
 
-const Modal = ({ closeModals, children }: Props): React.JSX.Element => {
+const Modal = ({ closeModals, children }: Props): React.ReactNode => {
 
 
   React.useEffect(() => {
@@ -29,6 +29,13 @@ const Modal = ({ closeModals, children }: Props): React.JSX.Element => {
   }, []);
 
 
+  if (!modalsContainer) {
+    return null;
+  }
+
+
+
+
   return ReactDOM.createPortal(
     <div>
       <div className={modalStyles.theModal}>
@@ -39,7 +46,7 @@ const Modal = ({ closeModals, children }: Props): React.JSX.Element => {
       </div>
       <ModalOverlay onClick={closeModals} />
     </div>,
-    modalsContainer!
+    modalsContainer
   );
 };
 

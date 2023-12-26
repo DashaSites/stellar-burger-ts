@@ -76,7 +76,7 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
     },
   });
   
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag<>({
     type: dndType,
     item: () => {
       return {

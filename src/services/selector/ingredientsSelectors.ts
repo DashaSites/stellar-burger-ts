@@ -6,7 +6,7 @@ export function ingredientSelector(id: string) {
   return function (state: RootState) {
     const allIngredients = state.ingredientsState.ingredients;
 
-    const ingredient = allIngredients.find((element) => element._id === id)!;
+    const ingredient = allIngredients.find((element) => element._id === id);
 
     return ingredient;
   };

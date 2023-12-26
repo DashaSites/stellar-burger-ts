@@ -18,9 +18,6 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 // (чтобы не дублировать эту проверку в каждом запросе)
 // function request(url: string, options: RequestInit | undefined) {
 //   // принимает два аргумента: урл и объект опций
-
-//   // !!! Каким-то образом ставить дженериком в функции checkResponse каждый раз то, 
-//   // !!! что в этот раз надо, или вообще убрать функцию request и делать без нее
 //   return fetch(url, options).then(checkResponse)
 // }
 
@@ -133,5 +130,65 @@ export const resetPassword = (password: string, token: string): Promise<Message>
   })
   .then(checkResponse<Message>)
 }
+
+
+// Запрос для выхода из системы
+// (авторизованный запрос)
+export const logoutUser = () => {
+  return fetchWithRefresh(`${API_URL}/auth/logout`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify({
+      "token": localStorage.getItem('refreshToken')
+   })
+  })
+};
+
+
+// ?????!!
+export const refreshToken = (): Promise<Response> => {
+  return fetch(`${API_URL}/auth/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem("refreshToken"),
+    }),
+  })
+  .then(checkResponse<Response>)
+};
+
+
+// ?????!!
+// Универсальная функция, внутри которой автоматически срабатывает обновление токена,
+// если он протух
+// Вызывать ее вместо fetch в других запросах, где есть токен авторизации
+// Это универсальная функция: как для запроса данных user, так и для 
+// других запросов, которые требуют авторизации
+export const fetchWithRefresh = async (
+  url: string, 
+  options: RequestInit | undefined & { headers: { authorization: string | null, "Content-Type": string } & { body?: string }} ): Promise<Response> => {
+  try {
+    const res = await fetch(url, options);
+    return await checkResponse(res);
+  } catch (err: any) {
+    if (err.message === "jwt expired") {
+      const refreshData = await refreshToken(); //обновляем токен
+      if (!refreshData.success) {
+        return Promise.reject(refreshData);
+      }
+      localStorage.setItem("refreshToken", refreshData.refreshToken);
+      localStorage.setItem("accessToken", refreshData.accessToken);
+      options.headers.authorization = refreshData.accessToken;
+      const res = await fetch(url, options); //повторяем запрос
+      return await checkResponse(res);
+    } else {
+      return Promise.reject(err);
+    }
+  }
+};
 
 

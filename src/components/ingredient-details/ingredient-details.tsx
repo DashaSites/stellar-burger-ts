@@ -3,15 +3,20 @@ import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { useSelector } from "react-redux";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { useParams } from 'react-router-dom';
+import Preloader from "../preloader/preloader";
 
 
 const IngredientDetails = (): React.JSX.Element => {
 
   const { ingredientId } = useParams();
 
-  // КЛИКНУТЫЙ ИНГРЕДИЕНТ
-  const ingredient = useSelector(ingredientSelector(ingredientId!)); 
 
+  // КЛИКНУТЫЙ ИНГРЕДИЕНТ
+  const ingredient = useSelector(ingredientSelector(ingredientId || "")); 
+
+  if (!ingredient) {
+    return <Preloader />
+  }
 
   return (
     <article className={ingredientDetailsStyles.container}>
