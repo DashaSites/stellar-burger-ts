@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { isAuthCheckedSelector, userNameSelector } from "../../services/selector/authorizationSelectors";
 import Preloader from "../preloader/preloader";
-//import PropTypes from "prop-types";
 
 type Props = {
   onlyUnAuth: boolean,
-  component: React.JSX.Element
+  component: React.JSX.Element,
+  children?: React.ReactNode
 };
 
 
@@ -66,9 +66,5 @@ export const OnlyUnAuth = ({ component }: ProvidedComponent): React.JSX.Element 
 );
 
 
-// ProtectedRoute.propTypes = {
-//   onlyUnAuth: PropTypes.bool,
-//   component: PropTypes.any.isRequired
-// };
 
 export default ProtectedRoute;

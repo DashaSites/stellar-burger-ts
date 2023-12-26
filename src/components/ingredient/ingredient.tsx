@@ -13,7 +13,8 @@ import { Ingredient as IngredientModel } from "../../utils/burger-api-types";
 
 
 type Props = {
-  ingredient: IngredientModel;
+  ingredient: IngredientModel,
+  children?: React.ReactNode
 };
 
 type DragObject = {

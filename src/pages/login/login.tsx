@@ -37,7 +37,7 @@ export const LoginPage = (): React.JSX.Element => {
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //@ts-ignore
+    
     dispatch(getFetchedAuthorizedUser(emailValue, passwordValue));
 
     setEmailValue("");

@@ -2,7 +2,7 @@ import React from "react";
 import notFoundStyles from "./not-found.module.css";
 
 // Страница не найдена
-export const PageNotFound = () => { 
+export const PageNotFound = (): React.JSX.Element => { 
 
   return (
     <>

@@ -3,7 +3,8 @@ import modalOverlayStyles from "./modal-overlay.module.css";
 
 
 type Props = {
-  onClick: () => void
+  onClick: () => void,
+  children?: React.ReactNode
 };
 
 const ModalOverlay = ({ onClick }: Props): React.JSX.Element => {

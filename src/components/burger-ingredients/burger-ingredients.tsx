@@ -44,11 +44,11 @@ const BurgerIngredients = (): React.JSX.Element => {
 
   const containerRef = useRef(null);
 
-  const bunsRef = useRef<HTMLDivElement>(null); // Заголовок раздела "Булки"
+  const bunsRef = useRef<HTMLDivElement | null>(null); // Заголовок раздела "Булки"
 
-  const saucesRef = useRef<HTMLDivElement>(null); // Заголовок раздела "Соусы"
+  const saucesRef = useRef<HTMLDivElement | null>(null); // Заголовок раздела "Соусы"
 
-  const mainsRef = useRef<HTMLDivElement>(null); // Заголовок раздела "Начинки"
+  const mainsRef = useRef<HTMLDivElement | null>(null); // Заголовок раздела "Начинки"
 
 
   const handleScroll = () => {

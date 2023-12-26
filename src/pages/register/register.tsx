@@ -34,7 +34,7 @@ export const RegisterPage = (): React.JSX.Element => {
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //@ts-ignore
+    
     dispatch(getFetchedRegisteredUser(nameValue, emailValue, passwordValue));
 
     setNameValue("");

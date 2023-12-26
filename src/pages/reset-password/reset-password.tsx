@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { resetPassword } from "../../utils/burger-api";
 
 
-export const ResetPasswordPage = () => {
+export const ResetPasswordPage = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

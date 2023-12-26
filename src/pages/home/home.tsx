@@ -3,10 +3,11 @@ import styles from "./home.module.css";
 import BurgerIngredients from "../../components/burger-ingredients/burger-ingredients";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../services/store/store";
+import BurgerConstructor from "../../components/burger-constructor/burger-constructor";
 
 export const HomePage = (): JSX.Element => {
 
-  // const isUserAuthorized = useSelector(isUserAuthorizedSelector);
+  const isUserAuthorized = useSelector(isUserAuthorizedSelector);
 
   // Достаю из стора ингредиенты, загруженные с сервера
   const { ingredients, isLoading, isError } = useSelector(
@@ -20,7 +21,7 @@ export const HomePage = (): JSX.Element => {
     <div className={styles.home}>
       <main className={styles.main}>
         <BurgerIngredients />
-        {/* <BurgerConstructor /> */}
+        <BurgerConstructor />
       </main>
     </div>
   );

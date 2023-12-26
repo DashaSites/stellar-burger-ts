@@ -16,7 +16,8 @@ import { ConstructorIngredientWithKey, Ingredient as IngredientModel } from "../
 type Props = {
   element: ConstructorIngredientWithKey,
   index: number,
-  moveIngredient: (dragIndex: number, hoverIndex: number) => void;
+  moveIngredient: (dragIndex: number, hoverIndex: number) => void,
+  children?: React.ReactNode
 };
 
 // Type для useDrag и accept для useDrop в одной переменной
@@ -26,7 +27,7 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
   
   const dispatch = useDispatch();
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLLIElement | null>(null);
 
   const [{ handlerId }, drop] = useDrop({
     accept: dndType,

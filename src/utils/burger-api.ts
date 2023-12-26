@@ -103,7 +103,7 @@ export const registerUser = (name: string, email: string, password: string): Pro
 
 // Запрос для опознания пользователя, забывшего пароль, по его мейлу
 // Это неавторизованный запрос (без передачи на сервер токена)
-export const recognizeUser = (email: string): Promise<UserData> => {
+export const recognizeUser = (email: string): Promise<Message> => {
   return fetch(`${API_URL}/password-reset`, {
     method: 'POST',
     headers: {
@@ -113,7 +113,7 @@ export const recognizeUser = (email: string): Promise<UserData> => {
       "email": email
     })
   })
-  .then(checkResponse<UserData>)
+  .then(checkResponse<Message>)
 }
 
 
