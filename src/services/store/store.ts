@@ -1,3 +1,4 @@
+import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { 
   compose, 
   legacy_createStore as createStore, 
@@ -7,7 +8,7 @@ import {
   combineReducers 
 } from 'redux';
 import thunk from 'redux-thunk';
-import { ThunkAction } from 'redux-thunk';
+// import { ThunkAction } from 'redux-thunk';
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
@@ -109,6 +110,7 @@ const rootReducer = combineReducers({
 
 export const store = createStore(rootReducer);
 
+// тип корневого редьюсера
 export type RootState = ReturnType<typeof rootReducer>;
 
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, NavLink, Outlet, useMatch } from "react-router-dom";
 import styles from "./layout.module.css";
 import { getUserLoggedOut } from "../../services/actions/authorizationActions.js";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/store/store";
 
 
 const Layout = (): React.JSX.Element => {

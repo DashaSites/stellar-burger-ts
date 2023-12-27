@@ -5,7 +5,7 @@ import {
   Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/store/store";
 import { recognizeUser } from "../../utils/burger-api";
 
 

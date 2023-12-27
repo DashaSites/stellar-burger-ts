@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ordersFeedStyles from './feed.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/store/store';
 import Orders from '../../components/orders/orders.jsx';
 import {
   LOAD_ALL_ORDERS_WS_CONNECT,

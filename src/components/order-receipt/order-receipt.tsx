@@ -1,7 +1,7 @@
 import React from "react";
 import orderDetailsStyles from "./order-receipt.module.css";
 import iconDone from "../../images/done.svg";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/store/store";
 import { RootState } from "../../services/store/store";
 
 const OrderReceipt = (): React.JSX.Element => {

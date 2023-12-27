@@ -5,7 +5,7 @@ import {
   CurrencyIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/store/store";
 import {
   bunSelector,
   middleIngredientsSelector
@@ -23,7 +23,7 @@ import { MiddleConstructorElement } from "../middle-constructor-element/middle-c
 import Modal from "../modal/modal";
 import OrderDetails from "../order-receipt/order-receipt";
 import Preloader from "../preloader/preloader.jsx";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
 
 

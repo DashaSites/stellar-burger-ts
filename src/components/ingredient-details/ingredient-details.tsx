@@ -1,6 +1,6 @@
 import React from "react";
 import ingredientDetailsStyles from "./ingredient-details.module.css";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/store/store";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { useParams } from 'react-router-dom';
 import Preloader from "../preloader/preloader";

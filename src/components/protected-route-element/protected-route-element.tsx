@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/store/store";
 import { Navigate, useLocation } from "react-router-dom";
 import { isAuthCheckedSelector, userNameSelector } from "../../services/selector/authorizationSelectors";
 import Preloader from "../preloader/preloader";
