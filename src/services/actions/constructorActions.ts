@@ -21,7 +21,6 @@ type IngredientWithKey = Ingredient & {
   key: string;
 };
 
-
 type MoveIngredientPayload = {
   dragIndex: number,
   hoverIndex: number
