@@ -16,7 +16,7 @@ import {
   MOVE_INGREDIENT,
 } from "../../services/actions/constructorActions";
 import { getFetchedOrderDetailsFromApi } from "../../services/actions/orderDetailsActions";
-import { RootState, select } from "../../services/store/store";
+import { RootState, select, store } from "../../services/store/store";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";
@@ -25,6 +25,7 @@ import OrderDetails from "../order-receipt/order-receipt";
 import Preloader from "../preloader/preloader.jsx";
 import { Navigate, useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
+
 
 const BurgerConstructor = (): React.JSX.Element => {
   const { ingredients } = useSelector((state: RootState) => state.ingredientsState);
@@ -88,7 +89,8 @@ const BurgerConstructor = (): React.JSX.Element => {
   // Создание заказа
   const handleClickOrderButton = () => {
 
-    const isAuthorized = select(isUserAuthorizedSelector);
+    const state = store.getState();
+    const isAuthorized = isUserAuthorizedSelector(state);
 
     if (isAuthorized) {
       setIsOrderDetailsOpened(true);
@@ -98,12 +100,29 @@ const BurgerConstructor = (): React.JSX.Element => {
     }
   };
 
+  type DropObject = {
+    id: string
+  };
+
+  type DropCollectedProps = {
+    opacity: number
+  };
+
+
   ///// DND: Перетаскиваю ингредиенты в конструктор /////
 
-  const [{ opacity }, dropRef] = useDrop({
+  const [{ opacity }, dropRef] = useDrop<DropObject, unknown, DropCollectedProps>({
     accept: "ingredient",
-    drop: (item) => {
-      const droppedIngredient = select(ingredientSelector(item.id)); // по айдишнику нашла ингредиент в сторе
+    drop: (item: DropObject) => {
+
+      const itemId = item.id;
+      const selector = ingredientSelector(itemId)
+      const state = store.getState();
+      const droppedIngredient = selector(state); // по айдишнику нашла ингредиент в сторе
+
+      if (!droppedIngredient) {
+        return;
+      }
 
       if (droppedIngredient.type !== "bun") {
         // если перетаскиваю не булку, то бросаю этот ингредиент в середину (через экшен-криейтор):

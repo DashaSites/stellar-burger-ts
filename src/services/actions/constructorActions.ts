@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient, ConstructorIngredient } from "../../utils/burger-api-types";
+import { Ingredient } from "../../utils/burger-api-types";
 
 
 
@@ -62,7 +62,7 @@ export type ConstructorActions =
 
 // экшен-криейтор для бросания ингредиента 
 // (он добавляет объекту ингредиента key с уникальным номером)
-export function dropIngredientWithUuid(droppedIngredient: ConstructorIngredient) {
+export function dropIngredientWithUuid(droppedIngredient: Ingredient) {
   return {
     type: DROP_INGREDIENT_MIDDLE,
     payload: { ...droppedIngredient, key: uuidv4() }

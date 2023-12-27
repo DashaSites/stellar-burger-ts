@@ -8,9 +8,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { deleteIngredient } from "../../services/actions/constructorActions";
 import { ConstructorIngredientWithKey, Ingredient as IngredientModel } from "../../utils/burger-api-types";
+import { Identifier } from "dnd-core";
 
-//import PropTypes from "prop-types";
-//import { ingredientPropType } from "../../utils/prop-types.js";
 
 
 type Props = {
@@ -18,6 +17,19 @@ type Props = {
   index: number,
   moveIngredient: (dragIndex: number, hoverIndex: number) => void,
   children?: React.ReactNode
+};
+
+type DragObject = {
+  id: string,
+  index: number
+};
+
+type DragCollectedProps = {
+  isDragging: boolean
+};
+
+type DropCollectedProps = {
+  handlerId: Identifier | null
 };
 
 // Type для useDrag и accept для useDrop в одной переменной
@@ -29,7 +41,7 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
 
   const ref = useRef<HTMLLIElement | null>(null);
 
-  const [{ handlerId }, drop] = useDrop({
+  const [{ handlerId }, drop] = useDrop<DragObject, unknown, DropCollectedProps>({
     accept: dndType,
     collect(monitor) {
       return {
@@ -54,7 +66,7 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
       // Determine mouse position
       const clientOffset = monitor.getClientOffset();
       // Get pixels to the top
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = clientOffset!.y - hoverBoundingRect.top;
       // Only perform the move when the mouse has crossed half of the items height
       // When dragging downwards, only move when the cursor is below 50%
       // When dragging upwards, only move when the cursor is above 50%
@@ -75,8 +87,9 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
       item.index = hoverIndex;
     },
   });
+
   
-  const [{ isDragging }, drag] = useDrag<>({
+  const [{ isDragging }, drag] = useDrag<DragObject, unknown, DragCollectedProps>({
     type: dndType,
     item: () => {
       return {
@@ -88,7 +101,9 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
       isDragging: monitor.isDragging(),
     }),
   });
+
   const opacity = isDragging ? 0 : 1;
+
   drag(drop(ref));
 
   return (
@@ -108,10 +123,3 @@ export const MiddleConstructorElement = ({ element, index, moveIngredient }: Pro
     </li>
   );
 };
-
-
-// MiddleConstructorElement.propTypes = {
-//   element: ingredientPropType.isRequired,
-//   index: PropTypes.number.isRequired,
-//   moveIngredient: PropTypes.func.isRequired
-// };

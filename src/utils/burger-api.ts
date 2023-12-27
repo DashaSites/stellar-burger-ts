@@ -147,8 +147,14 @@ export const logoutUser = () => {
 };
 
 
-// ?????!!
-export const refreshToken = (): Promise<Response> => {
+
+type RefreshTokenType = {
+  success: boolean,
+  refreshToken: string,
+  accessToken: string
+}
+
+export const refreshToken = (): Promise<RefreshTokenType> => {
   return fetch(`${API_URL}/auth/token`, {
     method: "POST",
     headers: {
@@ -158,11 +164,11 @@ export const refreshToken = (): Promise<Response> => {
       token: localStorage.getItem("refreshToken"),
     }),
   })
-  .then(checkResponse<Response>)
+  .then(checkResponse<RefreshTokenType>)
 };
 
 
-// ?????!!
+
 // Универсальная функция, внутри которой автоматически срабатывает обновление токена,
 // если он протух
 // Вызывать ее вместо fetch в других запросах, где есть токен авторизации
@@ -170,7 +176,7 @@ export const refreshToken = (): Promise<Response> => {
 // других запросов, которые требуют авторизации
 export const fetchWithRefresh = async (
   url: string, 
-  options: RequestInit | undefined & { headers: { authorization: string | null, "Content-Type": string } & { body?: string }} ): Promise<Response> => {
+  options: RequestInit & { headers: { authorization?: string, "Content-Type": string } & { body?: string }} ): Promise<Response> => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
