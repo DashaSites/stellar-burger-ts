@@ -18,14 +18,14 @@ export type Ingredient = {
   __v: number
 };
 
+export type ConstructorIngredientWithKey = Ingredient & {
+  key: string
+};
+
 
 // Ингредиент, который попадает в конструктор
 export type ConstructorIngredient = {
   id: string,
-  key: string
-};
-
-export type ConstructorIngredientWithKey = Ingredient & {
   key: string
 };
 

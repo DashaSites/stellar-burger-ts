@@ -65,7 +65,7 @@ export const constructorReducer = (state = initialState, action: ConstructorActi
         ...state,
         // возвращаю все начинки, кроме выбрасываемой
         middleIngredients: state.middleIngredients.filter(
-          (middleIngredient: ConstructorIngredient) => middleIngredient.key !== action.payload.key
+          (middleIngredient: ConstructorIngredient) => middleIngredient.key !== action.payload
         ),
       };
 

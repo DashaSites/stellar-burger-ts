@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient } from "../../utils/burger-api-types";
+import { ConstructorIngredient, Ingredient } from "../../utils/burger-api-types";
 
 
 
@@ -17,6 +17,7 @@ export const DROP_INGREDIENT_MIDDLE: DropIngredientMiddleType = 'DROP_INGREDIENT
 export const MOVE_INGREDIENT: MoveIngredientType = 'MOVE_INGREDIENT';
 
 
+
 type IngredientWithKey = Ingredient & {
   key: string;
 };
@@ -29,7 +30,7 @@ type MoveIngredientPayload = {
 // Описание типов экшенов
 export type DeleteIngredientAction = {
   type: DeleteIngredientType,
-  payload: IngredientWithKey
+  payload: string
 };
 
 export type DropIngredientBunAction = {
@@ -72,7 +73,7 @@ export function dropIngredientWithUuid(droppedIngredient: Ingredient) {
 export function deleteIngredient(_id: string) {
   return {
     type: DELETE_INGREDIENT,
-    payload: _id
+    payload: _id 
   }
 }
 
