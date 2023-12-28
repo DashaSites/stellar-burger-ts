@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, NavLink, Outlet, useMatch } from "react-router-dom";
 import styles from "./layout.module.css";
-import { getUserLoggedOut } from "../../services/actions/authorizationActions.js";
+import { getUserLoggedOut } from "../../services/actions/authorizationActions";
 import { useDispatch } from "../../services/store/store";
 
 
@@ -17,8 +17,6 @@ const Layout = (): React.JSX.Element => {
     navigate("/login", { replace: true });
   }
 
-  // Настраиваю стили для активных ссылок в панели навигации
-  const setActive = ({ isActive }) => (isActive ? `${styles.activeLink} text text_type_main-medium` : `${styles.navigationElement} text text_type_main-medium`); 
 
   return (
     <div className={styles.contentContainer}>

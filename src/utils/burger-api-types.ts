@@ -48,6 +48,9 @@ export type Message = {
   message: string
 };
 
+export type LogoutMessage = {
+  message: string
+};
 
 export type OrderOwner = UserData & {
   createdAt: string,

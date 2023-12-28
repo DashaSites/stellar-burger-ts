@@ -2,6 +2,9 @@ import {
   AUTHORIZE_USER_REQUEST,
   AUTHORIZE_USER_SUCCESS,
   AUTHORIZE_USER_ERROR,
+  LOGOUT_USER_REQUEST,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_ERROR,
   SET_AUTH_CHECKED,
   UserAuthorizationActions
 } from "../actions/authorizationActions";
@@ -52,6 +55,29 @@ export const authorizationReducer = (state = initialState, action: UserAuthoriza
       };
     }
     case AUTHORIZE_USER_ERROR: {
+      return {
+        ...state,
+        isError: true
+      };
+    }
+    case LOGOUT_USER_REQUEST: {
+      return {
+        ...state,
+        isError: false
+      };
+    }
+    case LOGOUT_USER_SUCCESS: {
+      console.log(action.payload.message);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      return {
+        ...state,
+        isAuthorized: false,
+        userName: null,
+        userEmail: null
+      };
+    }
+    case LOGOUT_USER_ERROR: {
       return {
         ...state,
         isError: true

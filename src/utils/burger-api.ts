@@ -134,7 +134,7 @@ export const resetPassword = (password: string, token: string): Promise<Message>
 
 // Запрос для выхода из системы
 // (авторизованный запрос)
-export const logoutUser = () => {
+export const logoutUser = (): Promise<Message> => {
   return fetchWithRefresh(`${API_URL}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -144,6 +144,7 @@ export const logoutUser = () => {
       "token": localStorage.getItem('refreshToken')
    })
   })
+  .then(checkResponse<Message>)
 };
 
 
