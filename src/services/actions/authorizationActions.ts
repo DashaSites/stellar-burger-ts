@@ -71,7 +71,6 @@ export const setAuthChecked = (value: boolean) => ({
 
 
 
-// ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
 // Асинхронный запрос для логина (функция с мидлваром)
 export const getFetchedAuthorizedUser = (email: string, password: string): AppThunk => { 
   return (dispatch) => {

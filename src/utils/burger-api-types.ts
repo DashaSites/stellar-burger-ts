@@ -37,6 +37,13 @@ export type UserData = {
 };
 
 
+export type UserDataWithTokens = {
+  accessToken: string,
+  refreshToken: string,
+  user: UserData
+};
+
+
 export type Message = {
   message: string
 };

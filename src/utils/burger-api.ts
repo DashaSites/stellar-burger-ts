@@ -1,4 +1,4 @@
-import { Ingredient, Message, OrderData, OrderNumber, UserData } from "./burger-api-types";
+import { Ingredient, Message, OrderData, OrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
 
 
 const API_URL = 'https://norma.nomoreparties.space/api';
@@ -65,7 +65,7 @@ export const getOrderByNumber = (number: number): Promise<OrderData> => {
 
 // Запрос для авторизации пользователя
 // Это неавторизованный запрос (без передачи на сервер токена)
-export const loginUser = (email: string, password: string): Promise<UserData> => {
+export const loginUser = (email: string, password: string): Promise<UserDataWithTokens> => {
   return fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: {
@@ -76,7 +76,7 @@ export const loginUser = (email: string, password: string): Promise<UserData> =>
       "password": password
    })
   })
-  .then(checkResponse<UserData>)
+  .then(checkResponse<UserDataWithTokens>)
 };
 
 
