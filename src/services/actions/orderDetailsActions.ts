@@ -1,5 +1,6 @@
 import { OrderData } from "../../utils/burger-api-types.js";
 import { getOrderDetails, getOrderByNumber } from "../../utils/burger-api.js";
+import { AppThunk } from "../store/store.js";
 
 // ДЛЯ РЕДЬЮСЕРА orderDetailsReducer
 
@@ -73,7 +74,7 @@ export type GetFullOrderDetailsActions =
 
   // ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
   // Асинхронный запрос за всеми деталями заказа (по его номеру)
-  export const getFetchedFullOrderDetails = (number) => { 
+  export const getFetchedFullOrderDetails = (number: number): AppThunk => { 
     return (dispatch) => {
       // флажок о начале загрузки
       dispatch({

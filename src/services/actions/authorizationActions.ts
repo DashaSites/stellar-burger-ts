@@ -1,6 +1,5 @@
 import { loginUser } from "../../utils/burger-api";
-import { AppDispatch } from "../store/store";
-
+import { AppThunk } from "../store/store";
 
 
 // Типы для экшенов логина
@@ -74,8 +73,8 @@ export const setAuthChecked = (value: boolean) => ({
 
 // ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
 // Асинхронный запрос для логина (функция с мидлваром)
-export const getFetchedAuthorizedUser = (email: string, password: string) => { 
-  return (dispatch: AppDispatch) => {
+export const getFetchedAuthorizedUser = (email: string, password: string): AppThunk => { 
+  return (dispatch) => {
     // флажок о начале загрузки
     dispatch({
         type: AUTHORIZE_USER_REQUEST

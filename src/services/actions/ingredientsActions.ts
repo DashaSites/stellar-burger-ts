@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
 import { Ingredient } from "../../utils/burger-api-types";
+import { AppThunk } from "../store/store";
 
 
 // Типы экшенов 
@@ -69,8 +70,8 @@ export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 // ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
 
 // Запрос к серверу для начальной загрузки ингредиентов
-export function getFetchedIngredientsFromApi() { // функция с мидлваром
-  return (dispatch: any) => {
+export function getFetchedIngredientsFromApi(): AppThunk { // функция с мидлваром
+  return (dispatch) => {
       // флажок о начале загрузки
       dispatch({
           type: LOAD_INGREDIENTS_REQUEST

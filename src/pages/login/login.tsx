@@ -5,7 +5,7 @@ import {
   PasswordInput,
   Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "../../services/store/store";
 import { getFetchedAuthorizedUser } from "../../services/actions/authorizationActions";
 

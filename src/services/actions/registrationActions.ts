@@ -1,6 +1,7 @@
 import { registerUser } from '../../utils/burger-api';
+import { AppThunk } from '../store/store';
 import { setAuthChecked } from './authorizationActions';
-import { AppDispatch } from "../store/store";
+
 
 
 // Типы для экшенов регистрации
@@ -43,8 +44,8 @@ export type UserRegistrationActions =
 
 
 // Асинхронный запрос к серверу для регистрации пользователя (функция с мидлваром)
-export const getFetchedRegisteredUser = (name: string, email: string, password: string) => { 
-  return (dispatch: AppDispatch) => {
+export const getFetchedRegisteredUser = (name: string, email: string, password: string): AppThunk => { 
+  return (dispatch) => {
     // флажок о начале загрузки
     dispatch({
         type: REGISTER_USER_REQUEST
