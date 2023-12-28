@@ -82,7 +82,7 @@ export const loginUser = (email: string, password: string): Promise<UserDataWith
 
 // Запрос для регистрации
 // Это неавторизованный запрос (без передачи на сервер токена)
-export const registerUser = (name: string, email: string, password: string): Promise<UserData> => {
+export const registerUser = (name: string, email: string, password: string): Promise<UserDataWithTokens> => {
   return fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     headers: {
@@ -94,7 +94,7 @@ export const registerUser = (name: string, email: string, password: string): Pro
       "name": name 
     })
   })
-  .then(checkResponse<UserData>)
+  .then(checkResponse<UserDataWithTokens>)
 }
 
 
