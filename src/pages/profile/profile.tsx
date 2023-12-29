@@ -25,13 +25,13 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     // Подгружаю из стора имя залогиненного пользователя в поле name 
-    setNameValue(userName);
+    setNameValue(userName || "");
   }, [userName]);
   
 
   useEffect(() => {
     // Подгружаю из стора имейл залогиненного пользователя в поле email 
-    setEmailValue(userEmail);
+    setEmailValue(userEmail || "");
   }, [userEmail]);
 
 
@@ -52,17 +52,11 @@ export const ProfilePage = () => {
   }
 
   const handleReset = () => {
-    setNameValue(userName);
-    setEmailValue(userEmail);
+    setNameValue(userName || "");
+    setEmailValue(userEmail || "");
     setPasswordValue("");
   }
 
-  const handleProfileFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setNameValue(event.target.value);
-    setEmailValue(event.target.value);
-    setPasswordValue(event.target.value);
-  }
 
 
   // Для условие - показать кнопки, когда что-то меняется в любом из инпутов
@@ -72,7 +66,7 @@ export const ProfilePage = () => {
 
   return (
       <div className={styles.formContainer}>
-        <form className={styles.form} onSubmit={handleProfileFormSubmit}>        
+        <form className={styles.form} onSubmit={handleSaveChanges}>        
           <fieldset className={styles.inputItems}>
            <Input 
               value={nameValue} 
@@ -95,11 +89,10 @@ export const ProfilePage = () => {
           {hasInputChanged ? (
             <div className={styles.buttonContainer}>
               <Button 
-                htmlType="button"
+                htmlType="submit"
                 type="primary" 
                 size="medium"
                 extraClass="ml-2"
-                onClick={handleSaveChanges}
               >  
                 Сохранить
               </Button>

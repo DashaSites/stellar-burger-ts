@@ -178,22 +178,22 @@ export const setAuthChecked = (value: boolean) => ({
 export const checkUserAuth = (): AppThunk => {
   return (dispatch) => {
       if (localStorage.getItem("accessToken")) {
-        getUser()
-            .catch(() => {
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("refreshToken");
-             }) // независимо от того, получили мы данные пользователя или нет, флажок выставляем в true
+        getUser() // независимо от того, получили мы данные пользователя или нет, флажок выставляем в true
              .then((data) => {
               dispatch({
                 type: AUTHORIZE_USER_SUCCESS,
                 payload: {
-                  accessToken: localStorage.getItem("accessToken"),
-                  refreshToken: localStorage.getItem("refreshToken"),
+                  accessToken: localStorage.getItem("accessToken") || "",
+                  refreshToken: localStorage.getItem("refreshToken") || "",
                   userEmail: data.user.email,
                   userName: data.user.name
                 },
               });
              })
+             .catch(() => {
+              localStorage.removeItem("accessToken");
+              localStorage.removeItem("refreshToken");
+            })
             .finally(() => dispatch(setAuthChecked(true)));
       } else {
           dispatch(setAuthChecked(true));
