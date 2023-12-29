@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import ordersFeedStyles from './feed.module.css';
 import { useDispatch, useSelector } from '../../services/store/store';
-import Orders from '../../components/orders/orders.jsx';
+import Orders from '../../components/orders/orders';
 import {
   LOAD_ALL_ORDERS_WS_CONNECT,
   LOAD_ALL_ORDERS_WS_DISCONNECT
 } from '../../services/actions/socketActions.js';
-import OrderPreloader from '../../components/order-preloader/order-preloader.jsx';
+import OrderPreloader from '../../components/order-preloader/order-preloader';
 
 
 

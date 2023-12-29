@@ -1,0 +1,62 @@
+.contentContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 60px;
+  /* max-width: 920px; */
+  padding-top: 120px;
+  padding-left: 10%;
+}
+
+.navigationElement {
+  text-decoration: none;
+  color: #8585AD;
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+
+.navigationContainer {
+  width: 380px;
+}
+
+.navigationBlock {
+  display: grid;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: rgba(242, 242, 243, 1);
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  color: #8585AD;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.form {
+  max-width: 480px;
+}
+
+.inputItems {
+  padding: 0;
+  border: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buttonContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between; 
+}

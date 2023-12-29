@@ -1,8 +1,8 @@
-import { loginUser, logoutUser } from '../../utils/burger-api';
+import { getUser, loginUser, logoutUser } from '../../utils/burger-api';
 import { LogoutMessage } from '../../utils/burger-api-types';
 import { AppThunk } from '../store/store';
 
-
+///// ЭКШЕНЫ ДЛЯ ЛОГИНА
 // Типы для экшенов логина
 export type AuthorizeUserRequestType = 'AUTHORIZE_USER_REQUEST';
 export type AuthorizeUserSuccessType = 'AUTHORIZE_USER_SUCCESS';
@@ -36,7 +36,7 @@ export type AuthorizeUserErrorAction = {
 
 
 
-
+///// ЭКШЕН SET_AUTH_CHECKED
 // Тип для экшена проверки пользователя, был ли он вообще проверен
 export type SetAuthCheckedType = 'SET_AUTH_CHECKED';
 
@@ -50,8 +50,8 @@ export type SetAuthCheckedAction = {
 };
 
 
-///// ЭКШЕНЫ ДЛЯ ЛОГАУТА
 
+///// ЭКШЕНЫ ДЛЯ ЛОГАУТА
 // Типы для экшенов логаута
 export type LogoutUserRequestType = 'LOGOUT_USER_REQUEST';
 export type LogoutUserSuccessType = 'LOGOUT_USER_SUCCESS';
@@ -77,10 +77,68 @@ export type LogoutUserSuccessAction = {
 export type LogoutUserErrorAction = {
   type: LogoutUserErrorType
 };
+/////
 
 
+///// ЭКШЕНЫ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
+// Типы для экшенов получения данных пользователя
+export type GetUserDetailsRequestType = 'GET_USER_DETAILS_REQUEST';
+export type GetUserDetailsSuccessType = 'GET_USER_DETAILS_SUCCESS';
+export type GetUserDetailsErrorType = 'GET_USER_DETAILS_ERROR';
+
+// Экшены для получения данных пользователя
+export const GET_USER_DETAILS_REQUEST: GetUserDetailsRequestType = 'GET_USER_DETAILS_REQUEST';
+export const GET_USER_DETAILS_SUCCESS: GetUserDetailsSuccessType = 'GET_USER_DETAILS_SUCCESS';
+export const GET_USER_DETAILS_ERROR: GetUserDetailsErrorType = 'GET_USER_DETAILS_ERROR';
+
+// Описания типов экшенов для получения данных пользователя
+export type GetUserDetailsRequestAction = {
+  type: GetUserDetailsRequestType
+};
+
+export type GetUserDetailsSuccessAction = {
+  type: GetUserDetailsSuccessType,
+  payload: {
+    userEmail: string | null,
+    userName:  string | null
+  }
+};
+
+export type GetUserDetailsErrorAction = {
+  type: GetUserDetailsErrorType
+};
+/////
 
 
+///// ЭКШЕНЫ ДЛЯ РЕДАКТИРОВАНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
+
+// Типы для экшенов для редактирования данных пользователя
+export type EditUserDetailsRequestType = 'EDIT_USER_DETAILS_REQUEST';
+export type EditUserDetailsSuccessType = 'EDIT_USER_DETAILS_SUCCESS';
+export type EditUserDetailsErrorType = 'EDIT_USER_DETAILS_ERROR';
+
+// Экшены для редактирования данных пользователя
+export const EDIT_USER_DETAILS_REQUEST: EditUserDetailsRequestType = 'EDIT_USER_DETAILS_REQUEST';
+export const EDIT_USER_DETAILS_SUCCESS: EditUserDetailsSuccessType = 'EDIT_USER_DETAILS_SUCCESS';
+export const EDIT_USER_DETAILS_ERROR: EditUserDetailsErrorType = 'EDIT_USER_DETAILS_ERROR';
+
+
+// Описания типов экшенов для редактирования данных пользователя
+export type EditUserDetailsRequestAction = {
+  type: EditUserDetailsRequestType
+};
+
+export type EditUserDetailsSuccessAction = {
+  type: EditUserDetailsSuccessType,
+  payload: {
+    userEmail: string | null,
+    userName:  string | null
+  }
+};
+
+export type EditUserDetailsErrorAction = {
+  type: EditUserDetailsErrorType
+};
 /////
 
 
@@ -94,7 +152,13 @@ export type UserAuthorizationActions =
   | SetAuthCheckedAction
   | LogoutUserRequestAction
   | LogoutUserSuccessAction
-  | LogoutUserErrorAction;
+  | LogoutUserErrorAction
+  | GetUserDetailsRequestAction
+  | GetUserDetailsSuccessAction
+  | GetUserDetailsErrorAction
+  | GetUserDetailsRequestAction
+  | EditUserDetailsSuccessAction
+  | EditUserDetailsSuccessAction;
 
 
 
@@ -106,6 +170,38 @@ export const setAuthChecked = (value: boolean) => ({
   type: SET_AUTH_CHECKED,
   payload: value
 });
+
+
+
+
+// Проверочный запрос (асинхронный экшен)
+export const checkUserAuth = (): AppThunk => {
+  return (dispatch) => {
+      if (localStorage.getItem("accessToken")) {
+        getUser()
+            .catch(() => {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+             }) // независимо от того, получили мы данные пользователя или нет, флажок выставляем в true
+             .then((data) => {
+              dispatch({
+                type: AUTHORIZE_USER_SUCCESS,
+                payload: {
+                  accessToken: localStorage.getItem("accessToken"),
+                  refreshToken: localStorage.getItem("refreshToken"),
+                  userEmail: data.user.email,
+                  userName: data.user.name
+                },
+              });
+             })
+            .finally(() => dispatch(setAuthChecked(true)));
+      } else {
+          dispatch(setAuthChecked(true));
+      }
+  };
+};
+
+
 
 
 
@@ -161,6 +257,63 @@ export const getUserLoggedOut = (): AppThunk => {
         // Если сервер не вернул данных, отправляем экшен об ошибке
         dispatch({
             type: LOGOUT_USER_ERROR
+        })
+    })
+  }   
+}
+
+
+
+// Асинхронный (с мидлваром) запрос к серверу для получения данных пользователя
+export const getFetchedUserDetails = (): AppThunk => { 
+  return (dispatch) => {
+    // флажок о начале загрузки
+    dispatch({
+        type: GET_USER_DETAILS_REQUEST
+    })
+
+    getUser()
+    .then((res) => {
+        dispatch({
+            type: GET_USER_DETAILS_SUCCESS,
+            payload: {
+              userEmail: res.user.email,
+              userName: res.user.name
+            },
+          })
+    }).catch((err) => {
+        console.log(err);
+        // Если сервер не вернул данных, отправляем экшен об ошибке
+        dispatch({
+            type: GET_USER_DETAILS_ERROR
+        })
+    })
+  }   
+}
+
+
+// Асинхронный (с мидлваром) запрос к серверу для редактирования данных пользователя
+export const getEditedUserDetails = (name, email, password): AppThunk => { 
+  return (dispatch) => {
+    // флажок о начале загрузки
+    dispatch({
+        type: EDIT_USER_DETAILS_REQUEST
+    })
+
+    patchUser(name, email, password)
+    .then((res) => {
+        dispatch({
+            type: EDIT_USER_DETAILS_SUCCESS,
+            payload: {
+              updatedUserEmail: res.user.email,
+              updatedUserName: res.user.name
+            },
+          })
+    }).catch((err) => {
+        console.log(err);
+        // Если сервер не вернул данных, отправляем экшен об ошибке
+        dispatch({
+            type: EDIT_USER_DETAILS_ERROR
         })
     })
   }   

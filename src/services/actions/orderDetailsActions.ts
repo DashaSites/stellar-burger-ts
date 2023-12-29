@@ -98,12 +98,8 @@ export type GetFullOrderDetailsActions =
   }
 
 
-
-
-
-  // ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
   // Асинхронный запрос к серверу за номером заказа (функция с мидлваром)
-  export const getFetchedOrderDetailsFromApi = (array) => { 
+  export const getFetchedOrderDetailsFromApi = (array: string[]): AppThunk => { 
     return (dispatch) => {
       // флажок о начале загрузки
       dispatch({

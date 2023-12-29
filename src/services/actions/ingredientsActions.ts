@@ -21,6 +21,7 @@ export type LoadIngredientsRequestAction = {
   type: LoadIngredientsRequestType
 };
 
+
 export type LoadIngredientsSuccessAction = {
   type: LoadIngredientsSuccessType,
   payload: Array<Ingredient>
@@ -45,7 +46,6 @@ export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
 
 
 
-// ! ТИПИЗИРОВАТЬ ЭТУ ФУНКЦИЮ ВМЕСТЕ СО СТОРОМ
 
 // Запрос к серверу для начальной загрузки ингредиентов
 export function getFetchedIngredientsFromApi(): AppThunk { // функция с мидлваром
@@ -57,9 +57,10 @@ export function getFetchedIngredientsFromApi(): AppThunk { // функция с 
 
       getIngredients()
       .then((res) => {
+        console.log(res)
           dispatch({
               type: LOAD_INGREDIENTS_SUCCESS, 
-              payload: res
+              payload: res.data
             })
       }).catch((err) => {
           console.log(err);

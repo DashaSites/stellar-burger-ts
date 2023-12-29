@@ -1,4 +1,4 @@
-import { Ingredient, Message, OrderData, OrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
+import { DataWithUserDetails, Ingredient, Message, OrderData, OrderNumber, ResponseWithIngredientsArray, ResponseWithOrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
 
 
 const API_URL = 'https://norma.nomoreparties.space/api';
@@ -23,17 +23,17 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 
 
 
-export const getIngredients = (): Promise<Ingredient[]> => {
+export const getIngredients = (): Promise<ResponseWithIngredientsArray> => {
   return fetch(`${API_URL}/ingredients`, {
       headers: {
         "Content-Type": "application/json"
       }
     })
-    .then(checkResponse<Ingredient[]>)
+    .then(checkResponse<ResponseWithIngredientsArray>)
 };
 
 
-export const getOrderDetails = (idArray: string[]): Promise<OrderNumber> => {
+export const getOrderDetails = (idArray: string[]): Promise<ResponseWithOrderNumber> => {
   return fetch(`${API_URL}/orders`, {
     method: 'POST',
     headers: {
@@ -44,7 +44,7 @@ export const getOrderDetails = (idArray: string[]): Promise<OrderNumber> => {
       "ingredients": idArray
     })
   })
-  .then(checkResponse<OrderNumber>)
+  .then(checkResponse<ResponseWithOrderNumber>)
 };
 
 
@@ -145,6 +145,19 @@ export const logoutUser = (): Promise<Message> => {
    })
   })
   .then(checkResponse<Message>)
+};
+
+
+// Авторизованный запрос на получение данных пользователя
+export const getUser = (): Promise<DataWithUserDetails> => {
+  return fetchWithRefresh(`${API_URL}/auth/user`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: localStorage.getItem('accessToken') || ""
+    }
+  })
+  .then(checkResponse<DataWithUserDetails>)
 };
 
 

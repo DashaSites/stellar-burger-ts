@@ -36,8 +36,8 @@ export type ConstructorIngredient = {
 
 // Данные о пользователе, как они приходят с сервера
 export type UserData = {
-  email: string,
-  name: string
+  email: string | null,
+  name: string | null
 };
 
 
@@ -76,3 +76,19 @@ export type OrderData = {
 };
 
 export type OrderNumber = Pick<OrderData, "number">;
+
+export type ResponseWithOrderNumber = {
+  success: boolean,
+  order: OrderData,
+  name: string
+};
+
+export type ResponseWithIngredientsArray = {
+  success: boolean,
+  data: Ingredient[]
+};
+
+export type DataWithUserDetails = {
+  success: boolean,
+  user: UserData
+};
