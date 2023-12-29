@@ -1,4 +1,4 @@
-import { Ingredient } from "../../utils/burger-api-types";
+import { DataWithIngredients, Ingredient } from "../../utils/burger-api-types";
 import {
   LOAD_INGREDIENTS_REQUEST,
   LOAD_INGREDIENTS_SUCCESS,
@@ -12,7 +12,6 @@ type State = {
   isLoading: boolean,
   isError: boolean
 };
-
 
 
 // initialState for ingredientsReducer

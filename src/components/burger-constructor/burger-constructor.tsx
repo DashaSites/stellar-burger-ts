@@ -22,7 +22,7 @@ import { dropIngredientWithUuid } from "../../services/actions/constructorAction
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-receipt/order-receipt";
-import Preloader from "../preloader/preloader.jsx";
+import Preloader from "../preloader/preloader";
 import { useNavigate } from "react-router-dom";
 import { isUserAuthorizedSelector } from "../../services/selector/authorizationSelectors";
 

@@ -18,6 +18,10 @@ export type Ingredient = {
   __v: number
 };
 
+export type DataWithIngredients = {
+  data: Array<Ingredient>
+};
+
 export type ConstructorIngredientWithKey = Ingredient & {
   key: string
 };

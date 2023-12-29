@@ -1,6 +1,6 @@
-import { ConstructorIngredientWithKey, Ingredient } from "../../utils/burger-api-types.js";
-import { RootState } from "../store/store.js";
-import { ingredientSelector } from "./ingredientsSelectors.js";
+import { ConstructorIngredientWithKey, Ingredient } from "../../utils/burger-api-types";
+import { RootState } from "../store/store";
+import { ingredientSelector } from "./ingredientsSelectors";
 
 // Элемент булки, найденный через редьюсер для конструктора бургера
 export function bunSelector(state: RootState) {

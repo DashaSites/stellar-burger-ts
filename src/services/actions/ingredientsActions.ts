@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getIngredients } from "../../utils/burger-api";
-import { Ingredient } from "../../utils/burger-api-types";
+import { DataWithIngredients, Ingredient } from "../../utils/burger-api-types";
 import { AppThunk } from "../store/store";
 
 
@@ -18,8 +18,7 @@ export const LOAD_INGREDIENTS_ERROR: LoadIngredientsErrorType = 'LOAD_INGREDIENT
 
 // Описание типов экшенов
 export type LoadIngredientsRequestAction = {
-  type: LoadIngredientsRequestType,
-  payload: never
+  type: LoadIngredientsRequestType
 };
 
 export type LoadIngredientsSuccessAction = {
@@ -28,8 +27,7 @@ export type LoadIngredientsSuccessAction = {
 };
 
 export type LoadIngredientsErrorAction = {
-  type: LoadIngredientsErrorType,
-  payload: never
+  type: LoadIngredientsErrorType
 };
 
 
@@ -61,7 +59,7 @@ export function getFetchedIngredientsFromApi(): AppThunk { // функция с 
       .then((res) => {
           dispatch({
               type: LOAD_INGREDIENTS_SUCCESS, 
-              payload: res.data
+              payload: res
             })
       }).catch((err) => {
           console.log(err);

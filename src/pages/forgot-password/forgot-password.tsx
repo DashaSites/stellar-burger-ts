@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./forgotPassword.module.css";
+import styles from "./forgot-password.module.css";
 import {
   EmailInput,
   Button

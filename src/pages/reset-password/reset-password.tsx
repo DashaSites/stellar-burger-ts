@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./resetPassword.module.css";
+import styles from "./reset-password.module.css";
 import {
   Input,
   PasswordInput,
