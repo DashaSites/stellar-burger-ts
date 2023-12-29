@@ -2,8 +2,7 @@ import { OrderData } from "../../utils/burger-api-types.js";
 import { getOrderDetails, getOrderByNumber } from "../../utils/burger-api.js";
 import { AppThunk } from "../store/store.js";
 
-// ДЛЯ РЕДЬЮСЕРА orderDetailsReducer
-
+///// ДЛЯ РЕДЬЮСЕРА orderDetailsReducer
 // Типы экшенов для orderDetailsReducer
 export type GetOrderDetailsRequestType = 'GET_ORDER_DETAILS_REQUEST';
 export type GetORderDetailsSuccessType = 'GET_ORDER_DETAILS_SUCCESS';
@@ -36,17 +35,17 @@ export type GetOrderDetailsActions =
 
 
 
-// ДЛЯ РЕДЬЮСЕРА fullOrderFoundByNumberReducer
-
+///// ДЛЯ РЕДЬЮСЕРА fullOrderFoundByNumberReducer
 // Типы экшенов для fullOrderFoundByNumberReducer 
 export type GetFullOrderDetailsRequestType = 'GET_FULL_ORDER_DETAILS_REQUEST';
 export type GetFullOrderDetailsSuccessType = 'GET_FULL_ORDER_DETAILS_SUCCESS';
 export type GetFullOrderDetailsErrorType = 'GET_FULL_ORDER_DETAILS_ERROR';
 
-// экшены для fullOrderFoundByNumberReducer 
+// Экшены для fullOrderFoundByNumberReducer 
 export const GET_FULL_ORDER_DETAILS_REQUEST: GetFullOrderDetailsRequestType = 'GET_FULL_ORDER_DETAILS_REQUEST';
 export const GET_FULL_ORDER_DETAILS_SUCCESS: GetFullOrderDetailsSuccessType = 'GET_FULL_ORDER_DETAILS_SUCCESS';
 export const GET_FULL_ORDER_DETAILS_ERROR: GetFullOrderDetailsErrorType = 'GET_FULL_ORDER_DETAILS_ERROR';
+
 
 // Описание типов экшенов для fullOrderFoundByNumberReducer
 export type GetFullOrderDetailsRequestAction = {
@@ -68,7 +67,6 @@ export type GetFullOrderDetailsActions =
     | GetFullOrderDetailsRequestAction
   | GetFullOrderDetailsSuccessAction
   | GetFullOrderDetailsErrorAction;
-
 
 
 

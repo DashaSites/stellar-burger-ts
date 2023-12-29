@@ -92,3 +92,13 @@ export type DataWithUserDetails = {
   success: boolean,
   user: UserData
 };
+
+export type ResetPasswordData = {
+  success: boolean,
+  message: string
+};
+
+export type ResponseWithFullOrderDetails = {
+  success: boolean,
+  orders: OrderData[]
+};

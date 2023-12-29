@@ -157,7 +157,6 @@ export type UserAuthorizationActions =
   | GetUserDetailsRequestAction
   | GetUserDetailsSuccessAction
   | GetUserDetailsErrorAction
-  | GetUserDetailsRequestAction
   | EditUserDetailsRequestAction
   | EditUserDetailsSuccessAction
   | EditUserDetailsErrorAction;

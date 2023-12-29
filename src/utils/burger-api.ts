@@ -1,4 +1,4 @@
-import { DataWithUserDetails, Ingredient, Message, OrderData, OrderNumber, ResponseWithIngredientsArray, ResponseWithOrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
+import { DataWithUserDetails, Ingredient, Message, OrderData, OrderNumber, ResetPasswordData, ResponseWithFullOrderDetails, ResponseWithIngredientsArray, ResponseWithOrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
 
 
 const API_URL = 'https://norma.nomoreparties.space/api';
@@ -48,13 +48,13 @@ export const getOrderDetails = (idArray: string[]): Promise<ResponseWithOrderNum
 };
 
 
-export const getOrderByNumber = (number: number): Promise<OrderData> => {
+export const getOrderByNumber = (number: number): Promise<ResponseWithFullOrderDetails> => {
   return fetch(`${API_URL}/orders/${number}`, {
     headers: {
       "Content-Type": "application/json"
     }
   })
-  .then(checkResponse<OrderData>)
+  .then(checkResponse<ResponseWithFullOrderDetails>)
 };
 
 
@@ -100,7 +100,7 @@ export const registerUser = (name: string, email: string, password: string): Pro
 
 // Запрос для опознания пользователя, забывшего пароль, по его мейлу
 // Это неавторизованный запрос (без передачи на сервер токена)
-export const recognizeUser = (email: string): Promise<Message> => {
+export const recognizeUser = (email: string): Promise<ResetPasswordData> => {
   return fetch(`${API_URL}/password-reset`, {
     method: 'POST',
     headers: {
@@ -110,14 +110,14 @@ export const recognizeUser = (email: string): Promise<Message> => {
       "email": email
     })
   })
-  .then(checkResponse<Message>)
+  .then(checkResponse<ResetPasswordData>)
 }
 
 
 
 // Запрос для reset password
 // Это неавторизованный запрос (без передачи на сервер токена)
-export const resetPassword = (password: string, token: string): Promise<Message> => {
+export const resetPassword = (password: string, token: string): Promise<ResetPasswordData> => {
   return fetch(`${API_URL}/password-reset/reset`, {
     method: 'POST',
     headers: {
@@ -128,7 +128,7 @@ export const resetPassword = (password: string, token: string): Promise<Message>
       "token": token
     })
   })
-  .then(checkResponse<Message>)
+  .then(checkResponse<ResetPasswordData>)
 }
 
 

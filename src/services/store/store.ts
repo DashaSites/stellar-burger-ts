@@ -25,13 +25,15 @@ import { constructorReducer } from '../reducers/constructorReducer';
 import { authorizationReducer } from '../reducers/authorizationReducer';
 import { registrationReducer } from '../reducers/registrationReducer';
 import { orderDetailsReducer } from '../reducers/orderDetailsReducer';
+import { fullOrderFoundByNumberReducer } from "../reducers/fullOrderFoundByNumberReducer";
 
 // собрала объединения типов всех экшенов для каждого редьюсера
 import { LoadIngredientsActions } from '../actions/ingredientsActions';
 import { ConstructorActions } from '../actions/constructorActions';
 import { UserAuthorizationActions } from '../actions/authorizationActions';
 import { UserRegistrationActions } from '../actions/registrationActions';
-import { GetOrderDetailsActions } from '../actions/orderDetailsActions'; // добавить сюда потом GetFullOrderDetailsActions для второго редьюсера с заказами
+import { GetOrderDetailsActions, GetFullOrderDetailsActions } from '../actions/orderDetailsActions';
+
 
 
 
@@ -104,7 +106,7 @@ const rootReducer = combineReducers({
   registrationState: registrationReducer, // получение с сервера инфы о регистрации пользователя
   // ordersFeedState: ordersFeedReducer, // получение с сервера всей инфы о заказах всех покупателей
   // ordersHistoryState: ordersHistoryReducer, // получение с сервера истории заказов пользователя
-  // fullOrderFoundByNumberState: fullOrderFoundByNumberReducer // получение всей инфы о заказе по его номеру
+  fullOrderFoundByNumberState: fullOrderFoundByNumberReducer // получение всей инфы о заказе по его номеру
 })
 
 
@@ -120,7 +122,8 @@ export type AppActions =
   | ConstructorActions
   | UserAuthorizationActions
   | UserRegistrationActions
-  | GetOrderDetailsActions;
+  | GetOrderDetailsActions
+  | GetFullOrderDetailsActions;
 
   
   // Тип AppThunk описывает, что все мои асинхронные экшены могут
