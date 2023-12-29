@@ -9,7 +9,7 @@ import { useDispatch } from "../../services/store/store";
 import { recognizeUser } from "../../utils/burger-api";
 
 
-export const ForgotPasswordPage = () => {
+export const ForgotPasswordPage = (): React.JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import { getFetchedUserDetails, getEditedUserDetails } from "../../services/acti
 import { userNameSelector, userEmailSelector } from "../../services/selector/authorizationSelectors";
  
 
-export const ProfilePage = () => {
+export const ProfilePage = (): React.JSX.Element => {
   const dispatch = useDispatch();
   const match = useResolvedPath("").pathname; // получаю путь, который сейчас есть в адресной строке
 

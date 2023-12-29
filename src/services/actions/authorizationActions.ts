@@ -1,4 +1,4 @@
-import { getUser, loginUser, logoutUser } from '../../utils/burger-api';
+import { getUser, loginUser, logoutUser, patchUser } from '../../utils/burger-api';
 import { LogoutMessage } from '../../utils/burger-api-types';
 import { AppThunk } from '../store/store';
 
@@ -80,6 +80,7 @@ export type LogoutUserErrorAction = {
 /////
 
 
+
 ///// ЭКШЕНЫ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 // Типы для экшенов получения данных пользователя
 export type GetUserDetailsRequestType = 'GET_USER_DETAILS_REQUEST';
@@ -131,8 +132,8 @@ export type EditUserDetailsRequestAction = {
 export type EditUserDetailsSuccessAction = {
   type: EditUserDetailsSuccessType,
   payload: {
-    userEmail: string | null,
-    userName:  string | null
+    updatedUserEmail: string | null,
+    updatedUserName:  string | null
   }
 };
 
@@ -157,8 +158,9 @@ export type UserAuthorizationActions =
   | GetUserDetailsSuccessAction
   | GetUserDetailsErrorAction
   | GetUserDetailsRequestAction
+  | EditUserDetailsRequestAction
   | EditUserDetailsSuccessAction
-  | EditUserDetailsSuccessAction;
+  | EditUserDetailsErrorAction;
 
 
 
@@ -204,8 +206,7 @@ export const checkUserAuth = (): AppThunk => {
 
 
 
-
-// Асинхронный запрос для логина (функция с мидлваром)
+// Асинхронный запрос для логина
 export const getFetchedAuthorizedUser = (email: string, password: string): AppThunk => { 
   return (dispatch) => {
     // флажок о начале загрузки
@@ -293,7 +294,7 @@ export const getFetchedUserDetails = (): AppThunk => {
 
 
 // Асинхронный (с мидлваром) запрос к серверу для редактирования данных пользователя
-export const getEditedUserDetails = (name, email, password): AppThunk => { 
+export const getEditedUserDetails = (name: string, email: string, password: string): AppThunk => { 
   return (dispatch) => {
     // флажок о начале загрузки
     dispatch({

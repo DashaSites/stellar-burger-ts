@@ -40,13 +40,6 @@ export type LoadIngredientsActions =
 
 
 
-
-export const GET_CLICKED_INGREDIENT = 'GET_CLICKED_INGREDIENT';
-
-
-
-
-
 // Запрос к серверу для начальной загрузки ингредиентов
 export function getFetchedIngredientsFromApi(): AppThunk { // функция с мидлваром
   return (dispatch) => {

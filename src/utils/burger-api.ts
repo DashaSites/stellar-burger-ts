@@ -161,6 +161,24 @@ export const getUser = (): Promise<DataWithUserDetails> => {
 };
 
 
+// Авторизованный запрос на редактирование данных пользователя
+export const patchUser = (name: string, email: string, password: string): Promise<DataWithUserDetails> => {
+  return fetchWithRefresh(`${API_URL}/auth/user`, {
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: localStorage.getItem('accessToken') || ""
+    },
+    body: JSON.stringify({
+      "name": name,
+      "email": email,
+      "password": password
+   })
+  })
+  .then(checkResponse<DataWithUserDetails>)
+}
+
+
 
 type RefreshTokenType = {
   success: boolean,
