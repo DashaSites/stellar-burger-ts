@@ -164,13 +164,6 @@ export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 // export type AppDispatch = typeof store.dispatch
 
 
-export const select = (selector: <TResult>(state: RootState) => TResult) => {
-  const state = store.getState();
-  const data = selector(state);
-  return data; 
-}
-
-
 
 
 

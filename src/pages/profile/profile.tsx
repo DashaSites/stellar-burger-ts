@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import { Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useResolvedPath } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../services/store/store";
 import { getFetchedUserDetails, getEditedUserDetails } from "../../services/actions/authorizationActions";
 import { userNameSelector, userEmailSelector } from "../../services/selector/authorizationSelectors";
  

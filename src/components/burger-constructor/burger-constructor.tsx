@@ -16,7 +16,7 @@ import {
   MOVE_INGREDIENT,
 } from "../../services/actions/constructorActions";
 import { getFetchedOrderDetailsFromApi } from "../../services/actions/orderDetailsActions";
-import { RootState, select, store } from "../../services/store/store";
+import { RootState, store } from "../../services/store/store";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { dropIngredientWithUuid } from "../../services/actions/constructorActions";
 import { MiddleConstructorElement } from "../middle-constructor-element/middle-constructor-element";

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import Orders from "../orders/orders.jsx";
+import Orders from "../orders/orders";
 import { RootState, useDispatch, useSelector } from "../../services/store/store";
 import {
   LOAD_USERS_ORDERS_WS_CONNECT,
