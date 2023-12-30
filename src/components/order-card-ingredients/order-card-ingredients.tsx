@@ -5,11 +5,9 @@ import { select } from "../../services/store/store.js";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
 import { Ingredient as IngredientModel } from "../../utils/burger-api-types";
 
-type Props = {
-  ingredients: IngredientModel[]
-};
 
-const OrderCardIngredients = ({ ingredients }: Props): React.JSX.Element => {
+
+const OrderCardIngredients = ({ ingredients }): React.JSX.Element => {
   
   const dispatch = useDispatch();
 

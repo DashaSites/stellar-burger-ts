@@ -65,8 +65,9 @@ export type OrderOwner = UserData & {
 // Данные о заказе, как они приходят с сервера
 export type OrderData = {
   createdAt: string,
-  ingredients: Ingredient[],
+  // в деталях заказа лежит не массив ингредиентов целиком, а только массив их айдишников
   name: string,
+  ingredients: string[], 
   number: number,
   owner: OrderOwner,
   price: number,

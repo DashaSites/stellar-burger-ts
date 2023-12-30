@@ -1,17 +1,24 @@
 import React from "react";
 import orderCardStyles from "./order-card.module.css";
-import { useDispatch } from "../../services/store/store";
+import { store, useDispatch } from "../../services/store/store";
 import {
   FormattedDate, 
   CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import OrderCardIngredients from "../../components/order-card-ingredients/order-card-ingredients";
 import { useLocation, Link, useResolvedPath, useMatch } from 'react-router-dom';
-import { select } from "../../services/store/store.js";
-import { orderPriceSelector } from "../../services/selector/ingredientsSelectors.js";
+import { orderPriceSelector } from "../../services/selector/ingredientsSelectors";
+import OrderPreloader from "../order-preloader/order-preloader";
+
+type Props = {
+  orderNumber: number,
+  title: string,
+  time: string,
+  ingredientsIds: string[]
+};
 
 
-const OrderCard = ({ orderNumber, title, time, ingredientsIds }) => {
+const OrderCard = ({ orderNumber, title, time, ingredientsIds }: Props): React.JSX.Element => {
   const dispatch = useDispatch();
   const location = useLocation();
   // хук useResolvedPath возвращает объект данных, 
@@ -22,18 +29,19 @@ const OrderCard = ({ orderNumber, title, time, ingredientsIds }) => {
   const matchProfileOrders = useMatch("/profile/orders");
   
   // Высчитываю стоимость заказа
+  const selector = orderPriceSelector(ingredientsIds);
+  const state = store.getState();
+  const orderPrice = selector(state); // через специальный селектор вычислила стоимость заказа по массиву id ингредиентов
 
-  const orderPrice = select(orderPriceSelector(ingredientsIds));
-
-
+ 
   // Если заказ не проходит проверку на валидность, возвращаю null
-  const isNoNullIngredient = (ingredients) => {
+  const isNoNullIngredient = (ingredients: string[]) => {
     const boolsArray = ingredients.map((ingredient) => ingredient != null);
     return !boolsArray.includes(false);
   }
 
 
-  const checkOrderValidity = (orderNumberFromServer, titleFromServer, ingredientsInOrder) => {
+  const checkOrderValidity = (orderNumberFromServer: number, titleFromServer: string, ingredientsInOrder: string[]) => {
     return (
       orderNumberFromServer !== null &&
       orderNumberFromServer !== undefined &&
@@ -49,7 +57,7 @@ const OrderCard = ({ orderNumber, title, time, ingredientsIds }) => {
   const isCheckOrderValitityPassed = checkOrderValidity(orderNumber, title, ingredientsIds);
 
   if (!isCheckOrderValitityPassed) {
-    return null;
+    return <OrderPreloader />;
   }
 
 
