@@ -1,4 +1,4 @@
-import { DataWithUserDetails, Ingredient, Message, OrderData, OrderNumber, ResetPasswordData, ResponseWithFullOrderDetails, ResponseWithIngredientsArray, ResponseWithOrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
+import { DataWithUserDetails, Ingredient, LogoutResponseData, Message, OrderData, OrderNumber, ResetPasswordData, ResponseWithFullOrderDetails, ResponseWithIngredientsArray, ResponseWithOrderNumber, UserData, UserDataWithTokens } from "./burger-api-types";
 
 
 const API_URL = 'https://norma.nomoreparties.space/api';
@@ -134,7 +134,7 @@ export const resetPassword = (password: string, token: string): Promise<ResetPas
 
 // Запрос для выхода из системы
 // (авторизованный запрос)
-export const logoutUser = (): Promise<Message> => {
+export const logoutUser = (): Promise<LogoutResponseData> => {
   return fetchWithRefresh(`${API_URL}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -144,7 +144,7 @@ export const logoutUser = (): Promise<Message> => {
       "token": localStorage.getItem('refreshToken')
    })
   })
-  .then(checkResponse<Message>)
+  .then(checkResponse<LogoutResponseData>)
 };
 
 

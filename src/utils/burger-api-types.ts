@@ -102,3 +102,8 @@ export type ResponseWithFullOrderDetails = {
   success: boolean,
   orders: OrderData[]
 };
+
+export type LogoutResponseData = {
+  success: boolean,
+  message: string
+};

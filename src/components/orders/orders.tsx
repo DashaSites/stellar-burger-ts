@@ -5,11 +5,11 @@ import OrderPreloader from "../../components/order-preloader/order-preloader";
 import { OrderData } from "../../utils/burger-api-types";
 
 
-// type Props = {
-//   orders: OrderData[]
-// };
+type Props = {
+  orders: OrderData[]
+};
 
-const Orders = ({ orders }): React.JSX.Element => {
+const Orders = ({ orders }: Props): React.JSX.Element => {
 
 
   return (
@@ -17,6 +17,7 @@ const Orders = ({ orders }): React.JSX.Element => {
         <section className={`${ordersStyles.ordersWrapper} custom-scroll`}>
         { 
           orders.map((order, index) => {
+            // в ingredientsIds прокидываются именно айдишники ингредиентов
             return <OrderCard key={index} orderNumber={order.number} title={order.name} time={order.createdAt} ingredientsIds={order.ingredients} />
           })
         }
