@@ -1,10 +1,10 @@
-import { OrderData } from "../../utils/burger-api-types.js";
+import { OrderData } from "../../utils/burger-api-types";
 import {
   GET_FULL_ORDER_DETAILS_REQUEST,
   GET_FULL_ORDER_DETAILS_SUCCESS,
   GET_FULL_ORDER_DETAILS_ERROR,
   GetFullOrderDetailsActions
-} from "../actions/orderDetailsActions.js";
+} from "../actions/orderDetailsActions";
 
 type State = {
   order: null | OrderData,

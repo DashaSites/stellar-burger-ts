@@ -26,8 +26,7 @@ export const LOAD_ALL_ORDERS_WS_ERROR: LoadAllOrdersWsErrorType = 'LOAD_ALL_ORDE
 
 // Описания типов экшенов для ordersFeedReducer
 export type LoadAllOrdersWsConnectAction = {
-  type: LoadAllOrdersWsConnectType,
-  payload: ???
+  type: LoadAllOrdersWsConnectType
 };
 
 export type LoadAllOrdersWsDisconnectAction = {
@@ -36,18 +35,15 @@ export type LoadAllOrdersWsDisconnectAction = {
 };
 
 export type LoadAllOrdersWsConnectingAction = {
-  type: LoadAllOrdersWsConnectingType,
-  payload: ???
+  type: LoadAllOrdersWsConnectingType
 };
 
 export type LoadAllOrdersWsOpenAction = {
-  type: LoadAllOrdersWsOpenType,
-  payload: ???
+  type: LoadAllOrdersWsOpenType
 };
 
 export type LoadAllOrdersWsCloseAction = {
-  type: LoadAllOrdersWsCloseType,
-  payload: ???
+  type: LoadAllOrdersWsCloseType
 };
 
 export type LoadAllOrdersWsMessageAction = {
@@ -99,8 +95,7 @@ export const LOAD_USERS_ORDERS_WS_ERROR: LoadUsersOrdersWsErrorType = 'LOAD_USER
 
 // Описания типов экшенов для ordersFeedReducer
 export type LoadUsersOrdersWsConnectAction = {
-  type: LoadUsersOrdersWsConnectType,
-  payload: ???
+  type: LoadUsersOrdersWsConnectType
 };
 
 export type LoadUsersOrdersWsDisconnectAction = {
@@ -109,18 +104,15 @@ export type LoadUsersOrdersWsDisconnectAction = {
 };
 
 export type LoadUsersOrdersWsConnectingAction = {
-  type: LoadUsersOrdersWsConnectingType,
-  payload: ???
+  type: LoadUsersOrdersWsConnectingType
 };
 
 export type LoadUsersOrdersWsOpenAction = {
-  type: LoadUsersOrdersWsOpenType,
-  payload: ???
+  type: LoadUsersOrdersWsOpenType
 };
 
 export type LoadUsersOrdersWsCloseAction = {
-  type: LoadUsersOrdersWsCloseType,
-  payload: ???
+  type: LoadUsersOrdersWsCloseType
 };
 
 export type LoadUsersOrdersWsMessageAction = {

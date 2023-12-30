@@ -3,7 +3,7 @@ import {
   GET_ORDER_DETAILS_SUCCESS,
   GET_ORDER_DETAILS_ERROR,
   GetOrderDetailsActions
-} from "../actions/orderDetailsActions.js";
+} from "../actions/orderDetailsActions";
 
 
 type State = {
