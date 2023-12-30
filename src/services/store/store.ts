@@ -26,6 +26,8 @@ import { authorizationReducer } from '../reducers/authorizationReducer';
 import { registrationReducer } from '../reducers/registrationReducer';
 import { orderDetailsReducer } from '../reducers/orderDetailsReducer';
 import { fullOrderFoundByNumberReducer } from "../reducers/fullOrderFoundByNumberReducer";
+import { ordersFeedReducer } from "../reducers/ordersFeedReducer";
+import { ordersHistoryReducer } from "../reducers/ordersHistoryReducer";
 
 // собрала объединения типов всех экшенов для каждого редьюсера
 import { LoadIngredientsActions } from '../actions/ingredientsActions';
@@ -33,6 +35,8 @@ import { ConstructorActions } from '../actions/constructorActions';
 import { UserAuthorizationActions } from '../actions/authorizationActions';
 import { UserRegistrationActions } from '../actions/registrationActions';
 import { GetOrderDetailsActions, GetFullOrderDetailsActions } from '../actions/orderDetailsActions';
+import { LoadAllOrdersWsActions, LoadUsersOrdersWsActions } from "../actions/socketActions";
+
 
 
 
@@ -104,8 +108,8 @@ const rootReducer = combineReducers({
   orderDetailsState: orderDetailsReducer, // получение с сервера номера заказа
   authorizationState: authorizationReducer, // получение с сервера инфы об авторизации
   registrationState: registrationReducer, // получение с сервера инфы о регистрации пользователя
-  // ordersFeedState: ordersFeedReducer, // получение с сервера всей инфы о заказах всех покупателей
-  // ordersHistoryState: ordersHistoryReducer, // получение с сервера истории заказов пользователя
+  ordersFeedState: ordersFeedReducer, // получение с сервера всей инфы о заказах всех покупателей
+  ordersHistoryState: ordersHistoryReducer, // получение с сервера истории заказов пользователя
   fullOrderFoundByNumberState: fullOrderFoundByNumberReducer // получение всей инфы о заказе по его номеру
 })
 
@@ -123,7 +127,9 @@ export type AppActions =
   | UserAuthorizationActions
   | UserRegistrationActions
   | GetOrderDetailsActions
-  | GetFullOrderDetailsActions;
+  | GetFullOrderDetailsActions
+  | LoadAllOrdersWsActions
+  | LoadUsersOrdersWsActions;
 
   
   // Тип AppThunk описывает, что все мои асинхронные экшены могут
