@@ -1,23 +1,23 @@
 import React from "react";
 import orderCardIngredients from "./order-card-ingredients.module.css";
-import { useDispatch } from "../../services/store/store";
-import { select } from "../../services/store/store.js";
+import { store, useDispatch } from "../../services/store/store";
 import { ingredientSelector } from "../../services/selector/ingredientsSelectors";
-import { Ingredient as IngredientModel } from "../../utils/burger-api-types";
 
 
+type Props = {
+  //айдишники ингредиентов
+  ingredients: string[] 
+};
 
-const OrderCardIngredients = ({ ingredients }): React.JSX.Element => {
+const OrderCardIngredients = ({ ingredients }: Props): React.JSX.Element => {
   
   const dispatch = useDispatch();
 
     // Получаю массив уникальных ингредиентов из заказа:
-    const getOrderIngredientsWithoutDuplicates = (orderIngredients) => {
+    const getOrderIngredientsWithoutDuplicates = (orderIngredients: string[]) => {
     
+      let orderIngredientsWithoutDuplicates: string[] = []; 
 
-      let orderIngredientsWithoutDuplicates = []; 
-
-  
       orderIngredients.filter((ingredient) => {
         if (!orderIngredientsWithoutDuplicates.includes(ingredient)) {
           orderIngredientsWithoutDuplicates.push(ingredient);
@@ -40,24 +40,16 @@ const OrderCardIngredients = ({ ingredients }): React.JSX.Element => {
             
             // в цикле через селектор получаю по каждому айдишнику ингредиент,
             // чтобы ниже отрендерить картинки этих ингредиентов
-            const elementInOrder = select(ingredientSelector(ingredientId));
+            //const elementInOrder = select(ingredientSelector(ingredientId));
 
-
-
-
-
-
-
-            // const itemId = item.id;
-            // const selector = ingredientSelector(itemId)
-            // const state = store.getState();
-            // const droppedIngredient = selector(state); // по айдишнику нашла ингредиент в сторе
-
-
-
+            const selector = ingredientSelector(ingredientId);
+            const state = store.getState();
+            // по айдишнику нашла ингредиент целиком в сторе
+            const elementInOrder = selector(state);
+            
             return (
               <div key={index} className={orderCardIngredients.previewBox}>
-                <img src={elementInOrder.image} className={orderCardIngredients.previewImage} /> 
+                <img src={elementInOrder!.image} className={orderCardIngredients.previewImage} /> 
               </div>
               )            
             })
