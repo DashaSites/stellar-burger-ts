@@ -6,7 +6,7 @@ import { isAuthCheckedSelector, userNameSelector } from "../../services/selector
 import Preloader from "../preloader/preloader";
 
 type Props = {
-  onlyUnAuth: boolean,
+  onlyUnAuth?: boolean,
   component: React.JSX.Element,
   children?: React.ReactNode
 };

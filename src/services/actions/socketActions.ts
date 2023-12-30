@@ -30,8 +30,7 @@ export type LoadAllOrdersWsConnectAction = {
 };
 
 export type LoadAllOrdersWsDisconnectAction = {
-  type: LoadAllOrdersWsDisconnectType,
-  payload: ???
+  type: LoadAllOrdersWsDisconnectType
 };
 
 export type LoadAllOrdersWsConnectingAction = {
@@ -99,8 +98,7 @@ export type LoadUsersOrdersWsConnectAction = {
 };
 
 export type LoadUsersOrdersWsDisconnectAction = {
-  type: LoadUsersOrdersWsDisconnectType,
-  payload: ???
+  type: LoadUsersOrdersWsDisconnectType
 };
 
 export type LoadUsersOrdersWsConnectingAction = {

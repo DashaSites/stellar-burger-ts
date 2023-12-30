@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react';
 import ordersFeedStyles from './feed.module.css';
-import { useDispatch, useSelector } from '../../services/store/store';
+import { RootState, useDispatch, useSelector } from '../../services/store/store';
 import Orders from '../../components/orders/orders';
 import {
   LOAD_ALL_ORDERS_WS_CONNECT,
   LOAD_ALL_ORDERS_WS_DISCONNECT
-} from '../../services/actions/socketActions.js';
+} from '../../services/actions/socketActions';
 import OrderPreloader from '../../components/order-preloader/order-preloader';
+import { OrderData } from '../../utils/burger-api-types';
 
 
 
 // Страница ленты заказов
-export const OrdersFeed = () => { 
+export const OrdersFeed = (): React.JSX.Element => { 
 
   const dispatch = useDispatch();
 
   // Достаю из стора заказы всех покупателей (ленту заказов)
   const { allOrders, total, totalToday } = useSelector(
-    (state) => state.ordersFeedState
+    (state: RootState) => state.ordersFeedState
   );
 
 
@@ -37,7 +38,7 @@ export const OrdersFeed = () => {
 
 
   // Делаю проверки полученной с сервера ленты заказов
-  const checkAllOrdersValidity = (ordersFromServer) => {
+  const checkAllOrdersValidity = (ordersFromServer: OrderData[]) => {
     
     if (
       ordersFromServer === null ||
@@ -55,9 +56,9 @@ export const OrdersFeed = () => {
 
 
   // Отбираю все заказы со статусом "готово"
-  const readyOrderNumbersArray = [];
+  const readyOrderNumbersArray: number[] = [];
 
-  const getReadyOrderNumbersArray = (allOrders) => {
+  const getReadyOrderNumbersArray = (allOrders: OrderData[]) => {
     allOrders.map((order) => {
       if (order.status === "done") {
         readyOrderNumbersArray.push(order.number);
@@ -71,9 +72,9 @@ export const OrdersFeed = () => {
 
 
 // Получаю все заказы со статусом "в работе"
-  const pendingOrderNumbersArray = [];
+  const pendingOrderNumbersArray: number[] = [];
   
-  const getPendingOrderNumbersArray = (allOrders) => {
+  const getPendingOrderNumbersArray = (allOrders: OrderData[]) => {
     allOrders.map((order) => {
       if (order.status === "pending") {
         pendingOrderNumbersArray.push(order.number);

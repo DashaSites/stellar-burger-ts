@@ -1,11 +1,15 @@
 import React from "react";
 import ordersStyles from "./orders.module.css";
-import OrderCard from "../order-card/order-card.jsx";
-import OrderPreloader from "../../components/order-preloader/order-preloader.jsx";
+import OrderCard from "../order-card/order-card";
+import OrderPreloader from "../../components/order-preloader/order-preloader";
+import { OrderData } from "../../utils/burger-api-types";
 
 
+// type Props = {
+//   orders: OrderData[]
+// };
 
-const Orders = ({ orders }): JSX.Element => {
+const Orders = ({ orders }): React.JSX.Element => {
 
 
   return (
