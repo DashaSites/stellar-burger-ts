@@ -1,0 +1,42 @@
+.link {
+  text-decoration: none;
+  color: rgba(242, 242, 243, 1);
+}
+
+.section {
+  max-width: 100%;
+  padding: 24px;
+  background-color: #1C1C21;
+  border-radius: 40px;
+  margin-bottom: 16px;
+}
+
+
+.numberAndDate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formattedDate {
+  color: #8585AD;
+}
+
+.ingredientsAndCounter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderCounter {
+  max-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+}
+
+.counter {
+  margin: 0;
+  margin-right: 8px;
+  padding: 0;
+}

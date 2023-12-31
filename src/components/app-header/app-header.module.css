@@ -1,0 +1,48 @@
+.appHeader {
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #1C1C21;
+}
+
+.headerNavbar {
+  display: flex;
+  align-items: center;
+}
+
+.headerTabMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.headerLink {
+  border-radius: 40px;
+  box-shadow: 0px 1px .5px 0px #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: rgba(133, 133, 173, 1);
+}
+
+.headerLinkActive {
+  border-radius: 40px;
+  box-shadow: 0px 1px .5px 0px #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #F2F2F3;
+}
+
+.headerLogo {
+    margin-right: 288px;
+    margin-left: 112px;
+}

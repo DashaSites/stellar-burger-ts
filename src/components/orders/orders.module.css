@@ -1,0 +1,6 @@
+.ordersWrapper {
+  width: 100%;
+  max-width: 840px;
+  height: 700px;
+  overflow: auto;
+}
