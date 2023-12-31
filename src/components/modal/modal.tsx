@@ -10,8 +10,8 @@ type Props = {
   children: React.ReactNode
 };
 
-const modalsContainer = document.querySelector("#modals");
 
+const modalsContainer = document.querySelector("#modals");
 
 const Modal = ({ closeModals, children }: Props): React.JSX.Element => {
 
