@@ -1,4 +1,3 @@
-import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { 
   compose, 
   legacy_createStore as createStore, 
@@ -8,7 +7,7 @@ import {
   combineReducers 
 } from 'redux';
 import thunk from 'redux-thunk';
-// import { ThunkAction } from 'redux-thunk';
+import { ThunkAction } from 'redux-thunk';
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
@@ -37,12 +36,6 @@ import { UserRegistrationActions } from '../actions/registrationActions';
 import { GetOrderDetailsActions, GetFullOrderDetailsActions } from '../actions/orderDetailsActions';
 import { LoadAllOrdersWsActions, LoadUsersOrdersWsActions } from "../actions/socketActions";
 
-
-
-
-
-
-/*
 import {
   LOAD_ALL_ORDERS_WS_CONNECT,
   LOAD_ALL_ORDERS_WS_DISCONNECT,
@@ -57,8 +50,9 @@ import {
   LOAD_USERS_ORDERS_WS_CLOSE,
   LOAD_USERS_ORDERS_WS_ERROR,
   LOAD_USERS_ORDERS_WS_MESSAGE
-} from '../actions/socketActions.js';
-import { socketMiddleware } from '../middleware/socket-middleware.js';
+} from '../actions/socketActions';
+
+import { socketMiddleware } from '../middleware/socket-middleware';
 
 
 
@@ -85,10 +79,23 @@ const isAuthRequiredForFeed = false;
 const isAuthRequiredForHistory = true;
 
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}): typeof compose;
+  }
+}
+
+
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
+
+
+
+
+
+
 
 
 const feedSocketMiddleware = socketMiddleware('wss://norma.nomoreparties.space/orders/all', feedWsActions, isAuthRequiredForFeed);
@@ -98,7 +105,7 @@ const enhancer = composeEnhancers(applyMiddleware(thunk),
                                   applyMiddleware(feedSocketMiddleware),
                                   applyMiddleware(historySocketMiddleware));  
 
-*/
+
 
 
 // Корневой редьюсер
@@ -114,7 +121,7 @@ const rootReducer = combineReducers({
 })
 
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, enhancer);
 
 // тип корневого редьюсера
 export type RootState = ReturnType<typeof rootReducer>;

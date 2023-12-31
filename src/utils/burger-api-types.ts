@@ -65,8 +65,8 @@ export type OrderOwner = UserData & {
 // Данные о заказе, как они приходят с сервера
 export type OrderData = {
   createdAt: string,
-  // в деталях заказа лежит не массив ингредиентов целиком, а только массив их айдишников
   name: string,
+  // в деталях заказа лежит не массив ингредиентов целиком, а только массив их айдишников
   ingredients: string[], 
   number: number,
   owner: OrderOwner,
@@ -107,4 +107,11 @@ export type ResponseWithFullOrderDetails = {
 export type LogoutResponseData = {
   success: boolean,
   message: string
+};
+
+export type OrdersFeedType = {
+  success: boolean,
+  orders: OrderData[],
+  total: number,
+  totalToday: number
 };

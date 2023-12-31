@@ -1,6 +1,6 @@
-import { OrderData } from "../../utils/burger-api-types.js";
-import { getOrderDetails, getOrderByNumber } from "../../utils/burger-api.js";
-import { AppThunk } from "../store/store.js";
+import { OrderData } from "../../utils/burger-api-types";
+import { getOrderDetails, getOrderByNumber } from "../../utils/burger-api";
+import { AppThunk } from "../store/store";
 
 ///// ДЛЯ РЕДЬЮСЕРА orderDetailsReducer
 // Типы экшенов для orderDetailsReducer

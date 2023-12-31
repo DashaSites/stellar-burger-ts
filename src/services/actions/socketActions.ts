@@ -1,5 +1,7 @@
 // Экшены для двух редьюсеров: общей ленты заказов и истории заказов пользователя
 
+import { OrdersFeedType } from "../../utils/burger-api-types";
+
 // ЛЕНТА ВСЕХ ЗАКАЗОВ —> ordersFeedReducer
 // Типы для экшенов ordersFeedReducer
 export type LoadAllOrdersWsConnectType = 'LOAD_ALL_ORDERS_CONNECT';
@@ -47,12 +49,12 @@ export type LoadAllOrdersWsCloseAction = {
 
 export type LoadAllOrdersWsMessageAction = {
   type: LoadAllOrdersWsMessageType,
-  payload: ???
+  payload: OrdersFeedType
 };
 
 export type LoadAllOrdersWsErrorAction = {
   type: LoadAllOrdersWsErrorType,
-  payload: ???
+  payload: string
 };
 
 
@@ -115,12 +117,12 @@ export type LoadUsersOrdersWsCloseAction = {
 
 export type LoadUsersOrdersWsMessageAction = {
   type: LoadUsersOrdersWsMessageType,
-  payload: ???
+  payload: OrdersFeedType
 };
 
 export type LoadUsersOrdersWsErrorAction = {
   type: LoadUsersOrdersWsErrorType,
-  payload: ???
+  payload: string
 };
 
 
