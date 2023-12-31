@@ -22,9 +22,9 @@ const OrderFullInfo = () => {
 
   const { orderNumber } = useParams();
 
-  if (!orderNumber) {
-    return <OrderPreloader />
-  }
+  // if (!orderNumber) {
+  //   return <OrderPreloader />
+  // }
 
   // КЛИКНУТЫЙ ЗАКАЗ
   const orderFromFeed = useSelector(orderSelector(Number(orderNumber))); 
