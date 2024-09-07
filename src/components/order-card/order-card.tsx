@@ -49,7 +49,6 @@ const OrderCard = ({ orderNumber, title, time, ingredientsIds }: Props): React.J
       titleFromServer !== undefined &&
       ingredientsInOrder !== null &&
       ingredientsInOrder !== undefined &&
-      ingredientsInOrder.length >= 3 &&
       isNoNullIngredient(ingredientsIds)
     )
   }

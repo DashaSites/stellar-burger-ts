@@ -153,7 +153,7 @@ const BurgerConstructor = (): React.JSX.Element => {
     });
   }, []);
 
-
+  const isButtonDisabled = selectedIngredients.length < 3;
 
   return (
     <section
@@ -222,6 +222,7 @@ const BurgerConstructor = (): React.JSX.Element => {
               type="primary"
               size="large"
               onClick={handleClickOrderButton}
+              disabled={isButtonDisabled}
             >
               Оформить заказ
             </Button>
