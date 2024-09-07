@@ -1,3 +1,12 @@
+
+# Space Burger Joint
+
+Written on TypeScript, React, React DND and Redux
+
+Deployed app: https://merry-begonia-84c5e7.netlify.app/
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,0 +1,22 @@
+.theModal {
+  min-height: 500px;
+  width: 720px;
+  border: 1px solid #4C4C78;
+  background-color: #1C1C21;
+  border-radius: 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  cursor: pointer;
+  transition: .4s;
+}

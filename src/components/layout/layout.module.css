@@ -1,0 +1,36 @@
+.contentContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 60px;
+  padding-top: 120px;
+  padding-left: 10%;
+}
+
+.navigationContainer {
+  width: 380px;
+}
+
+.navigationBlock {
+  display: grid;
+}
+
+.navigationElement {
+  text-decoration: none;
+  color: #8585AD;
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  color: #8585AD;
+  opacity: 40%;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: rgba(242, 242, 243, 1);
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
